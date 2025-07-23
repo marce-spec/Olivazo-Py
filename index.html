@@ -5,12 +5,45 @@
   <title>Olivazo-Py</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; margin: 20px; background: #f9f9f9; }
-    .product { border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; background: #fff; }
-    .gallery { display: flex; gap: 20px; flex-wrap: wrap; }
-    img { width: 200px; height: auto; }
-    .icon-buttons { margin-top: 10px; }
-    button { padding: 8px; margin-right: 5px; }
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: url('https://via.placeholder.com/1200x800.png?text=Fondo+de+Olivos') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+    .product {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .discount {
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -23,14 +56,9 @@
       {
         name: "Aceite de Oliva Virgen Extra",
         price: 100000,
-        image: "https://via.placeholder.com/200x150.png?text=Aceite+Olivazo",
+        discountPrice: 80000,
+        image: "https://via.placeholder.com/300x200.png?text=Aceite+Olivazo",
         description: "Botella 500ml - Calidad premium"
-      },
-      {
-        name: "Aceite de Oliva Blend",
-        price: 80000,
-        image: "https://via.placeholder.com/200x150.png?text=Aceite+Blend",
-        description: "Botella 500ml - Mezcla suave"
       }
     ];
 
@@ -47,10 +75,10 @@
           <img src="${product.image}" alt="${product.name}" />
           <h3>${product.name}</h3>
           <p>${product.description}</p>
-          <p><strong>Precio unitario:</strong> ${formatGs(product.price)}</p>
+          <p id="price${index}"><strong>Precio unitario:</strong> ${formatGs(product.price)}</p>
           <label>Cantidad: <input type="number" id="qty${index}" value="1" min="1" /></label>
           <p id="total${index}"></p>
-          <div class="icon-buttons">
+          <div>
             <button onclick="makeCall()">📞 Llamar</button>
             <button onclick="sendWhatsApp(${index})">💬 WhatsApp</button>
           </div>
@@ -63,9 +91,15 @@
 
     function updateTotal(index) {
       const qty = parseInt(document.getElementById(`qty${index}`).value);
-      const basePrice = products[index].price;
-      const discountPrice = qty >= 2 ? 80000 : basePrice;
-      const total = qty * discountPrice;
+      const product = products[index];
+      const isDiscount = qty >= 2;
+      const unitPrice = isDiscount ? product.discountPrice : product.price;
+      const total = qty * unitPrice;
+
+      document.getElementById(`price${index}`).innerHTML = isDiscount
+        ? `<strong>Precio unitario:</strong> <span class="discount">${formatGs(unitPrice)} c/u (descuento)</span>`
+        : `<strong>Precio unitario:</strong> ${formatGs(unitPrice)}`;
+
       document.getElementById(`total${index}`).innerText = `Total: ${formatGs(total)}`;
     }
 
@@ -76,9 +110,9 @@
     function sendWhatsApp(index) {
       const qty = parseInt(document.getElementById(`qty${index}`).value);
       const product = products[index];
-      const price = qty >= 2 ? 80000 : product.price;
-      const total = qty * price;
-      const message = `Hola! Quiero comprar ${qty} unidad(es) de "${product.name}" por ${formatGs(price)} cada una. Total: ${formatGs(total)}.`;
+      const unitPrice = qty >= 2 ? product.discountPrice : product.price;
+      const total = qty * unitPrice;
+      const message = `Hola! Quiero comprar ${qty} unidad(es) de "${product.name}" a ${formatGs(unitPrice)} cada una. Total: ${formatGs(total)}.`;
       const encodedMsg = encodeURIComponent(message);
       window.open(`https://wa.me/595983559813?text=${encodedMsg}`, '_blank');
     }
