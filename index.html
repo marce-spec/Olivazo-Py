@@ -14,6 +14,37 @@
       color: #333;
     }
 
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+      border-radius: 0 0 10px 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .icon-set {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon-header {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.2s ease;
+    }
+
+    .icon-header:hover {
+      transform: scale(1.1);
+    }
+
     .product {
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid #ccc;
@@ -62,44 +93,17 @@
       margin-top: 10px;
     }
   </style>
-  .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
-  border-radius: 0 0 10px 10px;
-}
-
-.logo {
-  height: 50px;
-}
-
-.icon-set {
-  display: flex;
-  gap: 15px;
-}
-
-.icon-header {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.2s ease;
-}
-
-.icon-header:hover {
-  transform: scale(1.1);
-}
 </head>
 <body>
-<div class="header-top">
-  <img src="logo.png" alt="Logo Olivazo-Py" class="logo" />
-  <div class="icon-set">
-    <a href="tel:+595983559813"><img src="call-icon.svg" alt="Llamar" class="icon-header" /></a>
-    <a href="https://wa.me/595983559813" target="_blank"><img src="whatsapp-icon.svg" alt="WhatsApp" class="icon-header" /></a>
+
+  <div class="header-top">
+    <div class="logo">🫒 Olivazo-Py</div>
+    <div class="icon-set">
+      <a href="tel:+595983559813"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header" /></a>
+      <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header" /></a>
+    </div>
   </div>
-</div>
-  <h1>🫒 Olivazo-Py</h1>
+
   <div class="gallery" id="productGallery"></div>
 
   <script>
@@ -189,10 +193,8 @@
 
       const encodedMsg = encodeURIComponent(mensaje);
 
-      // Enviar al número de la empresa
       window.open(`https://wa.me/595983559813?text=${encodedMsg}`, '_blank');
 
-      // Enviar al número del cliente si lo ingresó
       if (userPhone.length >= 8) {
         const formattedUserPhone = userPhone.startsWith("0") ? "595" + userPhone.slice(1) : userPhone;
         window.open(`https://wa.me/${formattedUserPhone}?text=${encodedMsg}`, '_blank');
