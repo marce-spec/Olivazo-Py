@@ -15,7 +15,7 @@
     }
 
     .product {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border: 1px solid #ccc;
       padding: 15px;
       margin-bottom: 30px;
@@ -45,9 +45,21 @@
       cursor: pointer;
     }
 
+    input {
+      padding: 5px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
     .discount {
       color: green;
       font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -90,10 +102,13 @@
           <p id="price${index}"><strong>Precio unitario:</strong> ${formatGs(product.price)} c/u</p>
           <label>Cantidad: <input type="number" id="qty${index}" value="1" min="1" /></label>
           <p id="total${index}"></p>
-          <div>
-            <button onclick="makeCall()">📞 Llamar</button>
-            <button onclick="sendWhatsApp(${index})">💬 WhatsApp</button>
-          </div>
+
+          <label>Tu nombre: <input type="text" id="userName${index}" placeholder="Ej: Juan Pérez" /></label>
+          <label>Tu número WhatsApp: <input type="text" id="userPhone${index}" placeholder="Ej: 0981123456" /></label>
+
+          <button onclick="makeCall()">📞 Llamar</button>
+          <button onclick="sendWhatsApp(${index})">💬 Enviar a empresa</button>
+          <button onclick="sendToBoth(${index})">📝 Realizar pedido</button>
         `;
         gallery.appendChild(div);
         document.getElementById(`qty${index}`).addEventListener("input", () => updateTotal(index));
@@ -127,6 +142,27 @@
       const message = `Hola! Quiero comprar ${qty} unidad(es) de "${product.name}" a ${formatGs(unitPrice)} cada una. Total: ${formatGs(total)}.`;
       const encodedMsg = encodeURIComponent(message);
       window.open(`https://wa.me/595983559813?text=${encodedMsg}`, '_blank');
+    }
+
+    function sendToBoth(index) {
+      const qty = parseInt(document.getElementById(`qty${index}`).value);
+      const name = document.getElementById(`userName${index}`).value || "Sin nombre";
+      const userPhone = document.getElementById(`userPhone${index}`).value.trim();
+      const product = products[index];
+      const unitPrice = qty >= 2 ? product.discountPrice : product.price;
+      const total = qty * unitPrice;
+      const mensaje = `🫒 Pedido Olivazo-Py\nCliente: ${name}\nProducto: ${product.name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unitPrice)}\nTotal: ${formatGs(total)}\nContacto: ${userPhone}`;
+
+      const encodedMsg = encodeURIComponent(mensaje);
+
+      // Enviar al número de la empresa
+      window.open(`https://wa.me/595983559813?text=${encodedMsg}`, '_blank');
+
+      // Enviar al número del cliente si lo ingresó
+      if (userPhone.length >= 8) {
+        const formattedUserPhone = userPhone.startsWith("0") ? "595" + userPhone.slice(1) : userPhone;
+        window.open(`https://wa.me/${formattedUserPhone}?text=${encodedMsg}`, '_blank');
+      }
     }
 
     renderProducts();
