@@ -13,6 +13,7 @@
       background-size: cover;
       color: #333;
     }
+
     .product {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid #ccc;
@@ -21,16 +22,19 @@
       border-radius: 10px;
       max-width: 400px;
     }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
     }
+
     img {
       width: 100%;
       max-width: 300px;
       border-radius: 8px;
     }
+
     button {
       padding: 10px;
       margin: 5px;
@@ -40,6 +44,7 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     .discount {
       color: green;
       font-weight: bold;
@@ -59,6 +64,13 @@
         discountPrice: 80000,
         image: "https://via.placeholder.com/300x200.png?text=Aceite+Olivazo",
         description: "Botella 500ml - Calidad premium"
+      },
+      {
+        name: "Aceite de Oliva Blend",
+        price: 80000,
+        discountPrice: 70000,
+        image: "https://via.placeholder.com/300x200.png?text=Aceite+Blend",
+        description: "Botella 500ml - Mezcla suave"
       }
     ];
 
@@ -75,7 +87,7 @@
           <img src="${product.image}" alt="${product.name}" />
           <h3>${product.name}</h3>
           <p>${product.description}</p>
-          <p id="price${index}"><strong>Precio unitario:</strong> ${formatGs(product.price)}</p>
+          <p id="price${index}"><strong>Precio unitario:</strong> ${formatGs(product.price)} c/u</p>
           <label>Cantidad: <input type="number" id="qty${index}" value="1" min="1" /></label>
           <p id="total${index}"></p>
           <div>
@@ -98,7 +110,7 @@
 
       document.getElementById(`price${index}`).innerHTML = isDiscount
         ? `<strong>Precio unitario:</strong> <span class="discount">${formatGs(unitPrice)} c/u (descuento)</span>`
-        : `<strong>Precio unitario:</strong> ${formatGs(unitPrice)}`;
+        : `<strong>Precio unitario:</strong> ${formatGs(unitPrice)} c/u`;
 
       document.getElementById(`total${index}`).innerText = `Total: ${formatGs(total)}`;
     }
