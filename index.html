@@ -46,7 +46,6 @@
       38%,95%{opacity:0}
       100%{opacity:0}
     }
-    /* Overlay oscuro sobre fondo */
     body::after{
       content:'';
       position:fixed;
@@ -72,13 +71,19 @@
     }
     .icon-header:hover{transform:scale(1.15)}
 
-    /* Galería de productos */
+    /* Galerías */
+    .gallery-title{
+      text-align:center;
+      margin:50px 0 20px;
+      font-size:28px;
+      font-weight:600;
+    }
     .gallery{
       display:flex;
       flex-wrap:wrap;
       gap:30px;
       justify-content:center;
-      padding:40px 20px;
+      padding:0 20px 60px;
     }
     .product{
       background:rgba(255,255,255,.1);
@@ -102,7 +107,7 @@
     .discount{color:#8aff8a}
     label{font-size:14px;margin-top:10px}
     input[type=number],input[type=text]{
-      width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;
+      width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;color:#111;
     }
     button{
       margin-top:12px;padding:10px 18px;
@@ -131,73 +136,82 @@
     </div>
   </div>
 
-  <div class="gallery" id="productGallery"></div>
+  <!-- Galería 1: Aceites -->
+  <h2 class="gallery-title">Aceites de Oliva</h2>
+  <div class="gallery" id="galleryAceites"></div>
+
+  <!-- Galería 2: Suplementos para Gym -->
+  <h2 class="gallery-title">Aceitunas & Snacks</h2>
+  <div class="gallery" id="gallerySnacks"></div>
+
+  <!-- Galería 3: Natural -->
+  <h2 class="gallery-title">Cosmética Natural</h2>
+  <div class="gallery" id="galleryCosmetica"></div>
 
   <script>
-    const products = [
-      {
-        name:"Aceite de Oliva Virgen Extra",
-        price:100000,
-        discountPrice:80000,
-        image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",
-        description:"Botella 500 ml – Calidad premium"
-      },
-      {
-        name:"Aceite de Oliva Blend",
-        price:80000,
-        discountPrice:70000,
-        image:"https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",
-        description:"Botella 500 ml – Mezcla suave"
-      }
+    /*************  DATOS  *************/
+    const aceites = [
+      {name:"Aceite de Oliva Virgen Extra",price:100000,discountPrice:80000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",description:"Botella 500 ml – Calidad premium"},
+      {name:"Aceite de Oliva Blend",price:80000,discountPrice:70000,image:"https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",description:"Botella 500 ml – Mezcla suave"}
+    ];
+    const snacks = [
+      {name:"Aceitunas Verdes Rellenas",price:25000,discountPrice:22000,image:"https://cdn.pixabay.com/photo/2018/07/19/14/45/olives-3548564_1280.jpg",description:"Frasco 250 g"},
+      {name:"Mix de Aceitunas & Tomates Secos",price:30000,discountPrice:27000,image:"https://cdn.pixabay.com/photo/2017/09/27/16/49/olive-2792328_1280.jpg",description:"Bandeja 200 g"}
+    ];
+    const cosmeticos = [
+      {name:"Crema Hidratante de Oliva",price:50000,discountPrice:45000,image:"https://cdn.pixabay.com/photo/2020/10/02/13/50/cosmetics-5621774_1280.jpg",description:"Pote 50 ml – Piel seca"},
+      {name:"Jabón Artesanal de Oliva & Romero",price:18000,discountPrice:16000,image:"https://cdn.pixabay.com/photo/2016/10/22/20/34/soap-1761330_1280.jpg",description:"Unidad 100 g"}
     ];
 
     const formatGs = n => "Gs. " + n.toLocaleString();
 
-    function renderProducts(){
-      const gallery = document.getElementById("productGallery");
-      products.forEach((p,i)=>{
+    function renderGallery(list, containerId){
+      const container = document.getElementById(containerId);
+      list.forEach((p,i)=>{
         const div = document.createElement("div");
         div.className="product";
         div.innerHTML = `
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.description}</p>
-          <p id="price${i}"><strong>Precio unitario:</strong> ${formatGs(p.price)} c/u</p>
-          <label>Cantidad: <input type="number" id="qty${i}" value="1" min="1"></label>
-          <p id="total${i}"></p>
+          <p id="${containerId}_price${i}"><strong>Precio unitario:</strong> ${formatGs(p.price)} c/u</p>
+          <label>Cantidad: <input type="number" id="${containerId}_qty${i}" value="1" min="1"></label>
+          <p id="${containerId}_total${i}"></p>
 
-          <label>Tu nombre: <input type="text" id="userName${i}" placeholder="Ej: Juan Pérez"></label>
-          <label>Tu WhatsApp: <input type="text" id="userPhone${i}" placeholder="Ej: 0981123456"></label>
+          <label>Tu nombre: <input type="text" id="${containerId}_userName${i}" placeholder="Ej: Juan Pérez"></label>
+          <label>Tu WhatsApp: <input type="text" id="${containerId}_userPhone${i}" placeholder="Ej: 0981123456"></label>
 
-          <button onclick="sendToBoth(${i})">📝 Realizar pedido</button>
+          <button onclick="sendToBoth(${i}, ${JSON.stringify(containerId)})">📝 Realizar pedido</button>
         `;
-        gallery.appendChild(div);
-        document.getElementById(`qty${i}`).addEventListener("input",()=>updateTotal(i));
-        updateTotal(i);
+        container.appendChild(div);
+        document.getElementById(`${containerId}_qty${i}`).addEventListener("input",()=>updateTotal(i,containerId,list));
+        updateTotal(i,containerId,list);
       });
     }
 
-    function updateTotal(i){
-      const qty = +document.getElementById(`qty${i}`).value;
-      const p = products[i];
+    function updateTotal(i,containerId,list){
+      const qty = +document.getElementById(`${containerId}_qty${i}`).value;
+      const p = list[i];
       const isDisc = qty>=2;
       const unit = isDisc ? p.discountPrice : p.price;
       const total = qty*unit;
-      document.getElementById(`price${i}`).innerHTML = isDisc
+      document.getElementById(`${containerId}_price${i}`).innerHTML = isDisc
         ? `<strong>Precio unitario:</strong> <span class="discount">${formatGs(unit)} c/u (descuento)</span>`
         : `<strong>Precio unitario:</strong> ${formatGs(unit)} c/u`;
-      document.getElementById(`total${i}`).textContent = `Total: ${formatGs(total)}`;
+      document.getElementById(`${containerId}_total${i}`).textContent = `Total: ${formatGs(total)}`;
     }
 
-    function sendToBoth(i){
-      const qty = +document.getElementById(`qty${i}`).value;
-      const name = document.getElementById(`userName${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`userPhone${i}`).value.trim();
-      const p = products[i];
+    function sendToBoth(i,containerId){
+      const list = window[containerId.replace('gallery','').toLowerCase()];
+      const p = list[i];
+      const qty = +document.getElementById(`${containerId}_qty${i}`).value;
+      const name = document.getElementById(`${containerId}_userName${i}`).value || "Sin nombre";
+      const phone = document.getElementById(`${containerId}_userPhone${i}`).value.trim();
       const unit = qty>=2 ? p.discountPrice : p.price;
       const total = qty*unit;
-      const msg = `🫒 Pedido Olivazo-Py\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+      const msg = `🫒 Pedido Olivazo-Py\nGalería: ${containerId}\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
       const enc = encodeURIComponent(msg);
+
       window.open(`https://wa.me/595983559813?text=${enc}`,"_blank");
       if(phone.length>=8){
         const dest = phone.startsWith("0") ? "595"+phone.slice(1) : phone;
@@ -205,7 +219,10 @@
       }
     }
 
-    renderProducts();
+    /* Renderizado de las 3 galerías */
+    renderGallery(aceites,'galleryAceites');
+    renderGallery(snacks,'gallerySnacks');
+    renderGallery(cosmeticos,'galleryCosmetica');
   </script>
 </body>
 </html>
