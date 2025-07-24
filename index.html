@@ -9,59 +9,29 @@
     :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{
-      font-family:'Poppins',sans-serif;
-      color:#fff;
-      overflow-x:hidden;
-    }
+    body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden}
 
-    /* 4 Fondos rotativos (frutas & aceitunas) */
+    /* 4 Fondos rotativos – ahora más pequeños en móvil */
     .bg-slides{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      background-size:cover;
+      position:fixed;inset:0;z-index:-2;
+      background-size:60% auto;           /* ACHICADO */
       background-position:center;
-      animation:fade 24s infinite;
+      background-repeat:no-repeat;
+      animation:fade 16s infinite;        /* un poco más rápido */
       opacity:0;
     }
-    .bg-slides:nth-child(1){
-      background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-      animation-delay:0s;
-    }
-    .bg-slides:nth-child(2){
-      background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-      animation-delay:6s;
-    }
-    .bg-slides:nth-child(3){
-      background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-      animation-delay:12s;
-    }
-    .bg-slides:nth-child(4){
-      background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-      animation-delay:18s;
-    }
-    @keyframes fade{
-      0%,25%{opacity:1}
-      30%,95%{opacity:0}
-      100%{opacity:0}
-    }
+    .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
+    .bg-slides:nth-child(2){background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80');animation-delay:4s}
+    .bg-slides:nth-child(3){background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80');animation-delay:8s}
+    .bg-slides:nth-child(4){background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80');animation-delay:12s}
+    @keyframes fade{0%,20%{opacity:1}25%,95%{opacity:0}100%{opacity:0}}
+
     body::after{
-      content:'';
-      position:fixed;
-      inset:0;
-      background:var(--bg-overlay);
-      z-index:-1;
+      content:'';position:fixed;inset:0;
+      background:var(--bg-overlay);z-index:-1;
     }
 
-    .header-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 24px;
-      background:rgba(0,0,0,.35);
-      backdrop-filter:blur(4px);
-    }
+    .header-top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
     .logo{font-size:26px;font-weight:600}
     .icon-set{display:flex;gap:12px}
     .icon-header{width:30px;height:30px;filter:invert(1);transition:transform .2s}
@@ -69,11 +39,7 @@
 
     .gallery-title{text-align:center;margin:50px 0 20px;font-size:28px;font-weight:600}
     .gallery{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;padding:0 20px 60px}
-    .product{
-      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
-      border-radius:12px;padding:20px;width:100%;max-width:380px;
-      backdrop-filter:blur(8px);transition:.3s;
-    }
+    .product{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:20px;width:100%;max-width:380px;backdrop-filter:blur(8px);transition:.3s}
     .product:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,.4)}
     .product img{width:100%;border-radius:8px;margin-bottom:12px}
     .discount{color:#8aff8a}
@@ -118,26 +84,26 @@
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
 
-    /* ==========  DATOS  ========== */
+    /* ==========  DATOS NUEVOS  ========== */
     const aceites = [
-      {name:"Aceite Virgen Extra 500 ml",price:100000,discountPrice:80000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",desc:"Botella premium"},
-      {name:"Aceite Blend 500 ml",price:80000,discountPrice:70000,image:"https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",desc:"Mezcla suave"},
-      {name:"Aceite Virgen Extra 1 L",price:185000,discountPrice:150000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Petaca 1 L"},
-      {name:"Aceite Aromatizado Romero 250 ml",price:95000,discountPrice:85000,image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80",desc:"Infusión de romero"}
+      {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",price:200000,discountPrice:180000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Envase plástico económico"},
+      {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",price:200000,discountPrice:180000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Segunda unidad – mejor precio"},
+      {name:"Aceite Virgen Extra 500 ml (vidrio)",price:100000,discountPrice:90000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",desc:"Botella transparente sin etiqueta"},
+      {name:"Aceite Virgen Extra 1 L (pet)",price:150000,discountPrice:135000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Pet descartable sin marca"}
     ];
 
     const snacks = [
-      {name:"Aceitunas Verdes Rellenas",price:25000,discountPrice:22000,image:"https://cdn.pixabay.com/photo/2018/07/19/14/45/olives-3548564_1280.jpg",desc:"Frasco 250 g"},
-      {name:"Mix Aceitunas & Tomate",price:30000,discountPrice:27000,image:"https://cdn.pixabay.com/photo/2017/09/27/16/49/olive-2792328_1280.jpg",desc:"Bandeja 200 g"},
-      {name:"Aceitunas Negras Deshuesadas",price:27000,discountPrice:24000,image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=80",desc:"Envase 250 g"},
-      {name:"Tapenade de Olivas",price:20000,discountPrice:18000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Tarro 100 g"}
+      {name:"Aceitunas Verdes Curadas con Hierbas",price:25000,discountPrice:22000,image:"https://images.unsplash.com/photo-1587982649685-fbc3698hammer?auto=format&fit=crop&w=800&q=80",desc:"Frasco 250 g"},
+      {name:"Aceitunas Negras en Salmuera",price:27000,discountPrice:24000,image:"https://cdn.pixabay.com/photo/2018/07/19/14/45/olives-3548564_1280.jpg",desc:"Envase 250 g"},
+      {name:"Aceitunas Rellenas de Pimiento",price:28000,discountPrice:25000,image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=80",desc:"Frasco 220 g"},
+      {name:"Mix Snack Aceituna & Almendra",price:32000,discountPrice:29000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Bolsa 150 g"}
     ];
 
     const cosmeticos = [
-      {name:"Crema Hidratante Oliva",price:50000,discountPrice:45000,image:"https://cdn.pixabay.com/photo/2020/10/02/13/50/cosmetics-5621774_1280.jpg",desc:"Pote 50 ml"},
-      {name:"Jabón Artesanal Oliva & Romero",price:18000,discountPrice:16000,image:"https://cdn.pixabay.com/photo/2016/10/22/20/34/soap-1761330_1280.jpg",desc:"100 g"},
-      {name:"Aceite Capilar Reparador",price:75000,discountPrice:65000,image:"https://images.unsplash.com/photo-1593326041306-f1c8cc1eaaa5?auto=format&fit=crop&w=800&q=80",desc:"Frasco 100 ml"},
-      {name:"Exfoliante Labial Oliva & Miel",price:12000,discountPrice:10000,image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=80",desc:"Bálsamo 15 ml"}
+      {name:"Crema Facial Hidratante de Oliva",price:55000,discountPrice:50000,image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=80",desc:"Pote 50 ml – piel seca"},
+      {name:"Jabón Artesanal 100 % Oliva",price:20000,discountPrice:18000,image:"https://cdn.pixabay.com/photo/2016/10/22/20/34/soap-1761330_1280.jpg",desc:"Barra 100 g – sin perfume"},
+      {name:"Bálsamo Labial Oliva & Miel",price:15000,discountPrice:13000,image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=80",desc:"Stick 15 ml"},
+      {name:"Aceite Corporal de Oliva Virgen",price:70000,discountPrice:65000,image:"https://images.unsplash.com/photo-1593326041306-f1c8cc1eaaa5?auto=format&fit=crop&w=800&q=80",desc:"Frasco 100 ml"}
     ];
 
     const gym = [
@@ -172,33 +138,4 @@
       const q=+document.getElementById(`${id}_qty${i}`).value;
       const p=list[i];
       const disc=q>=2;
-      const unit=disc?p.discountPrice:p.price;
-      document.getElementById(`${id}_price${i}`).innerHTML=disc
-        ? `<strong>Precio:</strong> <span class="discount">${formatGs(unit)} c/u descuento</span>`
-        : `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
-      document.getElementById(`${id}_total${i}`).textContent=`Total: ${formatGs(q*unit)}`;
-    }
-    function send(i,id){
-      const list=window[id.replace('gallery','')];
-      const p=list[i];
-      const q=+document.getElementById(`${id}_qty${i}`).value;
-      const name=document.getElementById(`${id}_name${i}`).value||"Sin nombre";
-      const phone=document.getElementById(`${id}_phone${i}`).value.trim();
-      const unit=q>=2?p.discountPrice:p.price;
-      const total=q*unit;
-      const msg=`🫒 Pedido Olivazo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-      const enc=encodeURIComponent(msg);
-      window.open(`https://wa.me/595983559813?text=${enc}`,"_blank");
-      if(phone.length>=8){
-        const dest=phone.startsWith("0")?"595"+phone.slice(1):phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
-      }
-    }
-
-    render(aceites,'galleryAceites');
-    render(snacks,'gallerySnacks');
-    render(cosmeticos,'galleryCosmetica');
-    render(gym,'galleryGym');
-  </script>
-</body>
-</html>
+      const unit=disc
