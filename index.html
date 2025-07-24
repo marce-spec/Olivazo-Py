@@ -5,24 +5,15 @@
   <title>Olivazo-Py</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    .quienes-somos {
-  background-color: rgba(255,255,255,0.9);
-  padding: 20px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-}
-.quienes-somos h2 {
-  margin-top: 0;
-}
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 20px;
-  background: url('https://cdn.pixabay.com/photo/2019/04/04/17/56/olive-grove-4165632_1280.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #333;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* 👈 Acá está el sombreado suave */
-}
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: url('https://cdn.pixabay.com/photo/2019/04/04/17/56/olive-grove-4165632_1280.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    }
 
     .header-top {
       display: flex;
@@ -53,6 +44,17 @@ body {
 
     .icon-header:hover {
       transform: scale(1.1);
+    }
+
+    .quienes-somos {
+      background-color: rgba(255,255,255,0.9);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+    }
+
+    .quienes-somos h2 {
+      margin-top: 0;
     }
 
     .product {
@@ -113,35 +115,28 @@ body {
       <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header" /></a>
     </div>
   </div>
+
   <section class="quienes-somos">
-  <h2>Sobre Olivazo-Py</h2>
-  <p>Somos un emprendimiento familiar apasionado por el aceite de oliva de calidad. Cada botella está hecha con dedicación, tradición y sabor paraguayo. ¡Gracias por apoyar productos locales!</p>
-</section>
+    <h2>Sobre Olivazo-Py</h2>
+    <p>Somos un emprendimiento familiar apasionado por el aceite de oliva de calidad. Cada botella está hecha con dedicación, tradición y sabor paraguayo. ¡Gracias por apoyar productos locales!</p>
+  </section>
 
   <div class="gallery" id="productGallery"></div>
 
   <script>
-   const products = [
-  {
-    name: "Aceite de Oliva Virgen Extra",
-    price: 100000,
-    discountPrice: 80000,
-    image: "https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",
-    description: "Botella 500ml - Calidad premium"
-  },
-  {
-    name: "Aceite de Oliva Blend",
-    price: 80000,
-    discountPrice: 70000,
-    image: "https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",
-    description: "Botella 500ml - Mezcla suave"
-  }
-];
+    const products = [
+      {
+        name: "Aceite de Oliva Virgen Extra",
+        price: 100000,
+        discountPrice: 80000,
+        image: "https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",
+        description: "Botella 500ml - Calidad premium"
+      },
       {
         name: "Aceite de Oliva Blend",
         price: 80000,
         discountPrice: 70000,
-        image: "https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg" // para Blend
+        image: "https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",
         description: "Botella 500ml - Mezcla suave"
       }
     ];
@@ -224,4 +219,4 @@ body {
     renderProducts();
   </script>
 </body>
-</html>
+</html
