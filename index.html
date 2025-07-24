@@ -4,111 +4,130 @@
   <meta charset="UTF-8">
   <title>Olivazo-Py</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: url('https://cdn.pixabay.com/photo/2019/04/04/17/56/olive-grove-4165632_1280.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #333;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    :root {
+      --verde: #4caf50;
+      --verde-osc: #388e3c;
+      --bg-overlay: rgba(0,0,0,.55);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',sans-serif;
+      color:#fff;
+      background:#222;
+      overflow-x:hidden;
+    }
+    /* Fondos rotativos */
+    .bg-slides{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background-size:cover;
+      background-position:center;
+      animation:fade 18s infinite;
+      opacity:0;
+    }
+    .bg-slides:nth-child(1){
+      background-image:url('https://images.unsplash.com/photo-1471194402529-8e0f5a2d1c18?auto=format&fit=crop&w=1350&q=80');
+      animation-delay:0s;
+    }
+    .bg-slides:nth-child(2){
+      background-image:url('https://images.unsplash.com/photo-1498579397066-22750a3cb424?auto=format&fit=crop&w=1350&q=80');
+      animation-delay:6s;
+    }
+    .bg-slides:nth-child(3){
+      background-image:url('https://cdn.pixabay.com/photo/2019/04/04/17/56/olive-grove-4165632_1280.jpg');
+      animation-delay:12s;
+    }
+    @keyframes fade{
+      0%,33.333%{opacity:1}
+      38%,95%{opacity:0}
+      100%{opacity:0}
+    }
+    /* Overlay oscuro sobre fondo */
+    body::after{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:var(--bg-overlay);
+      z-index:-1;
     }
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 10px 20px;
-      border-bottom: 1px solid #ccc;
-      border-radius: 0 0 10px 10px;
-      margin-bottom: 20px;
+    /* Header */
+    .header-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 24px;
+      background:rgba(0,0,0,.35);
+      border-bottom:1px solid rgba(255,255,255,.15);
+      backdrop-filter:blur(4px);
     }
+    .logo{font-size:26px;font-weight:600}
+    .icon-set{display:flex;gap:12px}
+    .icon-header{
+      width:30px;height:30px;filter:invert(1);transition:transform .2s;
+    }
+    .icon-header:hover{transform:scale(1.15)}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
+    /* Galería de productos */
+    .gallery{
+      display:flex;
+      flex-wrap:wrap;
+      gap:30px;
+      justify-content:center;
+      padding:40px 20px;
     }
-
-    .icon-set {
-      display: flex;
-      gap: 15px;
+    .product{
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:12px;
+      padding:20px;
+      width:100%;
+      max-width:380px;
+      backdrop-filter:blur(8px);
+      transition:transform .3s, box-shadow .3s;
     }
-
-    .icon-header {
-      width: 32px;
-      height: 32px;
-      transition: transform 0.2s ease;
+    .product:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 25px rgba(0,0,0,.4);
     }
-
-    .icon-header:hover {
-      transform: scale(1.1);
+    .product img{
+      width:100%;border-radius:8px;margin-bottom:12px;
     }
-
-    .quienes-somos {
-      background-color: rgba(255,255,255,0.9);
-      padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 10px;
+    .product h3{font-size:20px;margin-bottom:8px}
+    .product p{margin-bottom:6px}
+    .discount{color:#8aff8a}
+    label{font-size:14px;margin-top:10px}
+    input[type=number],input[type=text]{
+      width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;
     }
-
-    .product {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-bottom: 30px;
-      border-radius: 10px;
-      max-width: 400px;
+    button{
+      margin-top:12px;padding:10px 18px;
+      background:var(--verde);color:#fff;border:none;border-radius:6px;
+      cursor:pointer;font-weight:600;transition:background .2s;
     }
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 8px;
-    }
-
-    button {
-      padding: 10px;
-      margin: 5px;
-      border: none;
-      background-color: #4caf50;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    input {
-      padding: 5px;
-      margin: 5px 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .discount {
-      color: green;
-      font-weight: bold;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-    }
+    button:hover{background:var(--verde-osc)}
   </style>
 </head>
 <body>
 
+  <!-- Fondos rotativos -->
+  <div class="bg-slides"></div>
+  <div class="bg-slides"></div>
+  <div class="bg-slides"></div>
+
   <div class="header-top">
     <div class="logo">🫒 Olivazo-Py</div>
     <div class="icon-set">
-      <a href="tel:+595983559813"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header" /></a>
-      <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header" /></a>
+      <a href="tel:+595983559813">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header">
+      </a>
+      <a href="https://wa.me/595983559813" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header">
+      </a>
     </div>
   </div>
 
@@ -117,97 +136,76 @@
   <script>
     const products = [
       {
-        name: "Aceite de Oliva Virgen Extra",
-        price: 100000,
-        discountPrice: 80000,
-        image: "https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",
-        description: "Botella 500ml - Calidad premium"
+        name:"Aceite de Oliva Virgen Extra",
+        price:100000,
+        discountPrice:80000,
+        image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",
+        description:"Botella 500 ml – Calidad premium"
       },
       {
-        name: "Aceite de Oliva Blend",
-        price: 80000,
-        discountPrice: 70000,
-        image: "https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",
-        description: "Botella 500ml - Mezcla suave"
+        name:"Aceite de Oliva Blend",
+        price:80000,
+        discountPrice:70000,
+        image:"https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",
+        description:"Botella 500 ml – Mezcla suave"
       }
     ];
 
-    function formatGs(amount) {
-      return "Gs. " + amount.toLocaleString();
-    }
+    const formatGs = n => "Gs. " + n.toLocaleString();
 
-    function renderProducts() {
+    function renderProducts(){
       const gallery = document.getElementById("productGallery");
-      products.forEach((product, index) => {
+      products.forEach((p,i)=>{
         const div = document.createElement("div");
-        div.className = "product";
+        div.className="product";
         div.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <p id="price${index}"><strong>Precio unitario:</strong> ${formatGs(product.price)} c/u</p>
-          <label>Cantidad: <input type="number" id="qty${index}" value="1" min="1" /></label>
-          <p id="total${index}"></p>
+          <img src="${p.image}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+          <p id="price${i}"><strong>Precio unitario:</strong> ${formatGs(p.price)} c/u</p>
+          <label>Cantidad: <input type="number" id="qty${i}" value="1" min="1"></label>
+          <p id="total${i}"></p>
 
-          <label>Tu nombre: <input type="text" id="userName${index}" placeholder="Ej: Juan Pérez" /></label>
-          <label>Tu número WhatsApp: <input type="text" id="userPhone${index}" placeholder="Ej: 0981123456" /></label>
+          <label>Tu nombre: <input type="text" id="userName${i}" placeholder="Ej: Juan Pérez"></label>
+          <label>Tu WhatsApp: <input type="text" id="userPhone${i}" placeholder="Ej: 0981123456"></label>
 
-          <button onclick="sendToBoth(${index})">📝 Realizar pedido</button>
+          <button onclick="sendToBoth(${i})">📝 Realizar pedido</button>
         `;
         gallery.appendChild(div);
-        document.getElementById(`qty${index}`).addEventListener("input", () => updateTotal(index));
-        updateTotal(index);
+        document.getElementById(`qty${i}`).addEventListener("input",()=>updateTotal(i));
+        updateTotal(i);
       });
     }
 
-    function updateTotal(index) {
-      const qty = parseInt(document.getElementById(`qty${index}`).value);
-      const product = products[index];
-      const isDiscount = qty >= 2;
-      const unitPrice = isDiscount ? product.discountPrice : product.price;
-      const total = qty * unitPrice;
-
-      document.getElementById(`price${index}`).innerHTML = isDiscount
-        ? `<strong>Precio unitario:</strong> <span class="discount">${formatGs(unitPrice)} c/u (descuento)</span>`
-        : `<strong>Precio unitario:</strong> ${formatGs(unitPrice)} c/u`;
-
-      document.getElementById(`total${index}`).innerText = `Total: ${formatGs(total)}`;
+    function updateTotal(i){
+      const qty = +document.getElementById(`qty${i}`).value;
+      const p = products[i];
+      const isDisc = qty>=2;
+      const unit = isDisc ? p.discountPrice : p.price;
+      const total = qty*unit;
+      document.getElementById(`price${i}`).innerHTML = isDisc
+        ? `<strong>Precio unitario:</strong> <span class="discount">${formatGs(unit)} c/u (descuento)</span>`
+        : `<strong>Precio unitario:</strong> ${formatGs(unit)} c/u`;
+      document.getElementById(`total${i}`).textContent = `Total: ${formatGs(total)}`;
     }
 
-    function makeCall() {
-      window.location.href = "tel:+595983559813";
-    }
-
-    function sendWhatsApp(index) {
-      const qty = parseInt(document.getElementById(`qty${index}`).value);
-      const product = products[index];
-      const unitPrice = qty >= 2 ? product.discountPrice : product.price;
-      const total = qty * unitPrice;
-      const message = `Hola! Quiero comprar ${qty} unidad(es) de "${product.name}" a ${formatGs(unitPrice)} cada una. Total: ${formatGs(total)}.`;
-      const encodedMsg = encodeURIComponent(message);
-      window.open(`https://wa.me/595983559813?text=${encodedMsg}`, '_blank');
-    }
-
-    function sendToBoth(index) {
-      const qty = parseInt(document.getElementById(`qty${index}`).value);
-      const name = document.getElementById(`userName${index}`).value || "Sin nombre";
-      const userPhone = document.getElementById(`userPhone${index}`).value.trim();
-      const product = products[index];
-      const unitPrice = qty >= 2 ? product.discountPrice : product.price;
-      const total = qty * unitPrice;
-      const mensaje = `🫒 Pedido Olivazo-Py\nCliente: ${name}\nProducto: ${product.name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unitPrice)}\nTotal: ${formatGs(total)}\nContacto: ${userPhone}`;
-
-      const encodedMsg = encodeURIComponent(mensaje);
-
-      window.open(`https://wa.me/595983559813?text=${encodedMsg}`, '_blank');
-
-      if (userPhone.length >= 8) {
-        const formattedUserPhone = userPhone.startsWith("0") ? "595" + userPhone.slice(1) : userPhone;
-        window.open(`https://wa.me/${formattedUserPhone}?text=${encodedMsg}`, '_blank');
+    function sendToBoth(i){
+      const qty = +document.getElementById(`qty${i}`).value;
+      const name = document.getElementById(`userName${i}`).value || "Sin nombre";
+      const phone = document.getElementById(`userPhone${i}`).value.trim();
+      const p = products[i];
+      const unit = qty>=2 ? p.discountPrice : p.price;
+      const total = qty*unit;
+      const msg = `🫒 Pedido Olivazo-Py\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+      const enc = encodeURIComponent(msg);
+      window.open(`https://wa.me/595983559813?text=${enc}`,"_blank");
+      if(phone.length>=8){
+        const dest = phone.startsWith("0") ? "595"+phone.slice(1) : phone;
+        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
       }
     }
 
     renderProducts();
   </script>
 </body>
-</html
+</html>
