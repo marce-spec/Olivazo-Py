@@ -6,44 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --verde: #4caf50;
-      --verde-osc: #388e3c;
-      --bg-overlay: rgba(0,0,0,.55);
-    }
+    :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family:'Poppins',sans-serif;
       color:#fff;
-      background:#222;
       overflow-x:hidden;
     }
-    /* Fondos rotativos */
+
+    /* 4 Fondos rotativos (frutas & aceitunas) */
     .bg-slides{
       position:fixed;
       inset:0;
       z-index:-2;
       background-size:cover;
       background-position:center;
-      animation:fade 18s infinite;
-      opacity:6s;
+      animation:fade 24s infinite;
+      opacity:0;
     }
     .bg-slides:nth-child(1){
       background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-animation-delay:0s;
+      animation-delay:0s;
     }
     .bg-slides:nth-child(2){
       background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-      animation-delay:0s;
+      animation-delay:6s;
     }
     .bg-slides:nth-child(3){
       background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-      animation-delay:0s;
+      animation-delay:12s;
+    }
+    .bg-slides:nth-child(4){
+      background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80') center/cover fixed;
+      animation-delay:18s;
     }
     @keyframes fade{
-      0%,33.333%{opacity:1}
-      38%,95%{opacity:0}
+      0%,25%{opacity:1}
+      30%,95%{opacity:0}
       100%{opacity:0}
     }
     body::after{
@@ -54,72 +54,39 @@ animation-delay:0s;
       z-index:-1;
     }
 
-    /* Header */
     .header-top{
       display:flex;
       justify-content:space-between;
       align-items:center;
       padding:12px 24px;
       background:rgba(0,0,0,.35);
-      border-bottom:1px solid rgba(255,255,255,.15);
       backdrop-filter:blur(4px);
     }
     .logo{font-size:26px;font-weight:600}
     .icon-set{display:flex;gap:12px}
-    .icon-header{
-      width:30px;height:30px;filter:invert(1);transition:transform .2s;
-    }
+    .icon-header{width:30px;height:30px;filter:invert(1);transition:transform .2s}
     .icon-header:hover{transform:scale(1.15)}
 
-    /* Galerías */
-    .gallery-title{
-      text-align:center;
-      margin:50px 0 20px;
-      font-size:28px;
-      font-weight:600;
-    }
-    .gallery{
-      display:flex;
-      flex-wrap:wrap;
-      gap:30px;
-      justify-content:center;
-      padding:0 20px 60px;
-    }
+    .gallery-title{text-align:center;margin:50px 0 20px;font-size:28px;font-weight:600}
+    .gallery{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;padding:0 20px 60px}
     .product{
-      background:rgba(255,255,255,.1);
-      border:1px solid rgba(255,255,255,.25);
-      border-radius:12px;
-      padding:20px;
-      width:100%;
-      max-width:380px;
-      backdrop-filter:blur(8px);
-      transition:transform .3s, box-shadow .3s;
+      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+      border-radius:12px;padding:20px;width:100%;max-width:380px;
+      backdrop-filter:blur(8px);transition:.3s;
     }
-    .product:hover{
-      transform:translateY(-6px);
-      box-shadow:0 10px 25px rgba(0,0,0,.4);
-    }
-    .product img{
-      width:100%;border-radius:8px;margin-bottom:12px;
-    }
-    .product h3{font-size:20px;margin-bottom:8px}
-    .product p{margin-bottom:6px}
+    .product:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,.4)}
+    .product img{width:100%;border-radius:8px;margin-bottom:12px}
     .discount{color:#8aff8a}
     label{font-size:14px;margin-top:10px}
-    input[type=number],input[type=text]{
-      width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;color:#111;
-    }
-    button{
-      margin-top:12px;padding:10px 18px;
-      background:var(--verde);color:#fff;border:none;border-radius:6px;
-      cursor:pointer;font-weight:600;transition:background .2s;
-    }
+    input[type=number],input[type=text]{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;color:#111}
+    button{margin-top:12px;padding:10px 18px;background:var(--verde);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600}
     button:hover{background:var(--verde-osc)}
   </style>
 </head>
 <body>
 
-  <!-- Fondos rotativos -->
+  <!-- 4 Fondos rotativos -->
+  <div class="bg-slides"></div>
   <div class="bg-slides"></div>
   <div class="bg-slides"></div>
   <div class="bg-slides"></div>
@@ -127,12 +94,8 @@ animation-delay:0s;
   <div class="header-top">
     <div class="logo">🫒 Olivazo-Py</div>
     <div class="icon-set">
-      <a href="tel:+595983559813">
-        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header">
-      </a>
-      <a href="https://wa.me/595983559813" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header">
-      </a>
+      <a href="tel:+595983559813"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header"></a>
+      <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header"></a>
     </div>
   </div>
 
@@ -140,89 +103,102 @@ animation-delay:0s;
   <h2 class="gallery-title">Aceites de Oliva</h2>
   <div class="gallery" id="galleryAceites"></div>
 
-  <!-- Galería 2: Suplementos para Gym -->
+  <!-- Galería 2: Aceitunas & Snacks -->
   <h2 class="gallery-title">Aceitunas & Snacks</h2>
   <div class="gallery" id="gallerySnacks"></div>
 
-  <!-- Galería 3: Natural -->
+  <!-- Galería 3: Cosmética Natural -->
   <h2 class="gallery-title">Cosmética Natural</h2>
   <div class="gallery" id="galleryCosmetica"></div>
 
-  <script>
-    /*************  DATOS  *************/
-    const aceites = [
-      {name:"Aceite de Oliva Virgen Extra",price:100000,discountPrice:80000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",description:"Botella 500 ml – Calidad premium"},
-      {name:"Aceite de Oliva Blend",price:80000,discountPrice:70000,image:"https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",description:"Botella 500 ml – Mezcla suave"}
-    ];
-    const snacks = [
-      {name:"Aceitunas Verdes Rellenas",price:25000,discountPrice:22000,image:"https://cdn.pixabay.com/photo/2018/07/19/14/45/olives-3548564_1280.jpg",description:"Frasco 250 g"},
-      {name:"Mix de Aceitunas & Tomates Secos",price:30000,discountPrice:27000,image:"https://cdn.pixabay.com/photo/2017/09/27/16/49/olive-2792328_1280.jpg",description:"Bandeja 200 g"}
-    ];
-    const cosmeticos = [
-      {name:"Crema Hidratante de Oliva",price:50000,discountPrice:45000,image:"https://cdn.pixabay.com/photo/2020/10/02/13/50/cosmetics-5621774_1280.jpg",description:"Pote 50 ml – Piel seca"},
-      {name:"Jabón Artesanal de Oliva & Romero",price:18000,discountPrice:16000,image:"https://cdn.pixabay.com/photo/2016/10/22/20/34/soap-1761330_1280.jpg",description:"Unidad 100 g"}
-    ];
+  <!-- Galería 4: Suplementos Gym -->
+  <h2 class="gallery-title">Suplementos & Gym</h2>
+  <div class="gallery" id="galleryGym"></div>
 
+  <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
 
-    function renderGallery(list, containerId){
-      const container = document.getElementById(containerId);
+    /* ==========  DATOS  ========== */
+    const aceites = [
+      {name:"Aceite Virgen Extra 500 ml",price:100000,discountPrice:80000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",desc:"Botella premium"},
+      {name:"Aceite Blend 500 ml",price:80000,discountPrice:70000,image:"https://cdn.pixabay.com/photo/2016/02/19/10/00/olive-oil-1208757_1280.jpg",desc:"Mezcla suave"},
+      {name:"Aceite Virgen Extra 1 L",price:185000,discountPrice:150000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Petaca 1 L"},
+      {name:"Aceite Aromatizado Romero 250 ml",price:95000,discountPrice:85000,image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80",desc:"Infusión de romero"}
+    ];
+
+    const snacks = [
+      {name:"Aceitunas Verdes Rellenas",price:25000,discountPrice:22000,image:"https://cdn.pixabay.com/photo/2018/07/19/14/45/olives-3548564_1280.jpg",desc:"Frasco 250 g"},
+      {name:"Mix Aceitunas & Tomate",price:30000,discountPrice:27000,image:"https://cdn.pixabay.com/photo/2017/09/27/16/49/olive-2792328_1280.jpg",desc:"Bandeja 200 g"},
+      {name:"Aceitunas Negras Deshuesadas",price:27000,discountPrice:24000,image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=80",desc:"Envase 250 g"},
+      {name:"Tapenade de Olivas",price:20000,discountPrice:18000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Tarro 100 g"}
+    ];
+
+    const cosmeticos = [
+      {name:"Crema Hidratante Oliva",price:50000,discountPrice:45000,image:"https://cdn.pixabay.com/photo/2020/10/02/13/50/cosmetics-5621774_1280.jpg",desc:"Pote 50 ml"},
+      {name:"Jabón Artesanal Oliva & Romero",price:18000,discountPrice:16000,image:"https://cdn.pixabay.com/photo/2016/10/22/20/34/soap-1761330_1280.jpg",desc:"100 g"},
+      {name:"Aceite Capilar Reparador",price:75000,discountPrice:65000,image:"https://images.unsplash.com/photo-1593326041306-f1c8cc1eaaa5?auto=format&fit=crop&w=800&q=80",desc:"Frasco 100 ml"},
+      {name:"Exfoliante Labial Oliva & Miel",price:12000,discountPrice:10000,image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=80",desc:"Bálsamo 15 ml"}
+    ];
+
+    const gym = [
+      {name:"Proteína Whey 1 kg",price:180000,discountPrice:160000,image:"https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80",desc:"Sabor vainilla"},
+      {name:"BCAA 300 g",price:90000,discountPrice:80000,image:"https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=800&q=80",desc:"Recuperación muscular"},
+      {name:"Creatina 250 g",price:70000,discountPrice:60000,image:"https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&w=800&q=80",desc:"Fuerza y volumen"},
+      {name:"Shaker Olivazo-Py",price:25000,discountPrice:20000,image:"https://images.unsplash.com/photo-1581006852262-e4307cf6283a?auto=format&fit=crop&w=800&q=80",desc:"700 ml con agitador"}
+    ];
+
+    /* ==========  RENDER  ========== */
+    function render(list,id){
+      const g=document.getElementById(id);
       list.forEach((p,i)=>{
-        const div = document.createElement("div");
-        div.className="product";
-        div.innerHTML = `
+        const d=document.createElement("div");
+        d.className="product";
+        d.innerHTML=`
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
-          <p>${p.description}</p>
-          <p id="${containerId}_price${i}"><strong>Precio unitario:</strong> ${formatGs(p.price)} c/u</p>
-          <label>Cantidad: <input type="number" id="${containerId}_qty${i}" value="1" min="1"></label>
-          <p id="${containerId}_total${i}"></p>
-
-          <label>Tu nombre: <input type="text" id="${containerId}_userName${i}" placeholder="Ej: Juan Pérez"></label>
-          <label>Tu WhatsApp: <input type="text" id="${containerId}_userPhone${i}" placeholder="Ej: 0981123456"></label>
-
-          <button onclick="sendToBoth(${i}, ${JSON.stringify(containerId)})">📝 Realizar pedido</button>
-        `;
-        container.appendChild(div);
-        document.getElementById(`${containerId}_qty${i}`).addEventListener("input",()=>updateTotal(i,containerId,list));
-        updateTotal(i,containerId,list);
+          <p>${p.desc}</p>
+          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(p.price)} c/u</p>
+          <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
+          <p id="${id}_total${i}"></p>
+          <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
+          <label>Tu WhatsApp: <input type="text" id="${id}_phone${i}" placeholder="0981…"></label>
+          <button onclick="send(${i},'${id}')">📝 Pedir</button>`;
+        g.appendChild(d);
+        document.getElementById(`${id}_qty${i}`).addEventListener("input",()=>upd(i,id,list));
+        upd(i,id,list);
       });
     }
-
-    function updateTotal(i,containerId,list){
-      const qty = +document.getElementById(`${containerId}_qty${i}`).value;
-      const p = list[i];
-      const isDisc = qty>=2;
-      const unit = isDisc ? p.discountPrice : p.price;
-      const total = qty*unit;
-      document.getElementById(`${containerId}_price${i}`).innerHTML = isDisc
-        ? `<strong>Precio unitario:</strong> <span class="discount">${formatGs(unit)} c/u (descuento)</span>`
-        : `<strong>Precio unitario:</strong> ${formatGs(unit)} c/u`;
-      document.getElementById(`${containerId}_total${i}`).textContent = `Total: ${formatGs(total)}`;
+    function upd(i,id,list){
+      const q=+document.getElementById(`${id}_qty${i}`).value;
+      const p=list[i];
+      const disc=q>=2;
+      const unit=disc?p.discountPrice:p.price;
+      document.getElementById(`${id}_price${i}`).innerHTML=disc
+        ? `<strong>Precio:</strong> <span class="discount">${formatGs(unit)} c/u descuento</span>`
+        : `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
+      document.getElementById(`${id}_total${i}`).textContent=`Total: ${formatGs(q*unit)}`;
     }
-
-    function sendToBoth(i,containerId){
-      const list = window[containerId.replace('gallery','').toLowerCase()];
-      const p = list[i];
-      const qty = +document.getElementById(`${containerId}_qty${i}`).value;
-      const name = document.getElementById(`${containerId}_userName${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`${containerId}_userPhone${i}`).value.trim();
-      const unit = qty>=2 ? p.discountPrice : p.price;
-      const total = qty*unit;
-      const msg = `🫒 Pedido Olivazo-Py\nGalería: ${containerId}\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-      const enc = encodeURIComponent(msg);
-
+    function send(i,id){
+      const list=window[id.replace('gallery','')];
+      const p=list[i];
+      const q=+document.getElementById(`${id}_qty${i}`).value;
+      const name=document.getElementById(`${id}_name${i}`).value||"Sin nombre";
+      const phone=document.getElementById(`${id}_phone${i}`).value.trim();
+      const unit=q>=2?p.discountPrice:p.price;
+      const total=q*unit;
+      const msg=`🫒 Pedido Olivazo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+      const enc=encodeURIComponent(msg);
       window.open(`https://wa.me/595983559813?text=${enc}`,"_blank");
       if(phone.length>=8){
-        const dest = phone.startsWith("0") ? "595"+phone.slice(1) : phone;
+        const dest=phone.startsWith("0")?"595"+phone.slice(1):phone;
         window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
       }
     }
 
-    /* Renderizado de las 3 galerías */
-    renderGallery(aceites,'galleryAceites');
-    renderGallery(snacks,'gallerySnacks');
-    renderGallery(cosmeticos,'galleryCosmetica');
+    render(aceites,'galleryAceites');
+    render(snacks,'gallerySnacks');
+    render(cosmeticos,'galleryCosmetica');
+    render(gym,'galleryGym');
   </script>
 </body>
 </html>
