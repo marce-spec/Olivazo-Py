@@ -138,4 +138,33 @@
       const q=+document.getElementById(`${id}_qty${i}`).value;
       const p=list[i];
       const disc=q>=2;
-      const unit=disc
+      const unit=disc?p.discountPrice:p.price;
+      document.getElementById(`${id}_price${i}`).innerHTML=disc
+        ? `<strong>Precio:</strong> <span class="discount">${formatGs(unit)} c/u descuento</span>`
+        : `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
+      document.getElementById(`${id}_total${i}`).textContent=`Total: ${formatGs(q*unit)}`;
+    }
+    function send(i,id){
+      const list=window[id.replace('gallery','')];
+      const p=list[i];
+      const q=+document.getElementById(`${id}_qty${i}`).value;
+      const name=document.getElementById(`${id}_name${i}`).value||"Sin nombre";
+      const phone=document.getElementById(`${id}_phone${i}`).value.trim();
+      const unit=q>=2?p.discountPrice:p.price;
+      const total=q*unit;
+      const msg=`🫒 Pedido Olivazo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+      const enc=encodeURIComponent(msg);
+      window.open(`https://wa.me/595983559813?text=${enc}`,"_blank");
+      if(phone.length>=8){
+        const dest=phone.startsWith("0")?"595"+phone.slice(1):phone;
+        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
+      }
+    }
+
+    render(aceites,'galleryAceites');
+    render(snacks,'gallerySnacks');
+    render(cosmeticos,'galleryCosmetica');
+    render(gym,'galleryGym');
+  </script>
+</body>
+</html>
