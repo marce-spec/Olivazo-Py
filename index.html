@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Olivazo-Py</title>
+  <title>OlivaZo Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
@@ -11,13 +11,13 @@
     html,body{height:100%}
     body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden}
 
-    /* 4 Fondos rotativos – ahora más pequeños en móvil */
+    /* 4 Fondos rotativos */
     .bg-slides{
       position:fixed;inset:0;z-index:-2;
-      background-size:60% auto;           /* ACHICADO */
+      background-size:60% auto;
       background-position:center;
       background-repeat:no-repeat;
-      animation:fade 16s infinite;        /* un poco más rápido */
+      animation:fade 16s infinite;
       opacity:0;
     }
     .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
@@ -32,7 +32,8 @@
     }
 
     .header-top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
-    .logo{font-size:26px;font-weight:600}
+    .logo{font-size:26px;font-weight:600;display:flex;align-items:center;gap:8px}
+    .logo::before{content:"🌿";font-size:30px}
     .icon-set{display:flex;gap:12px}
     .icon-header{width:30px;height:30px;filter:invert(1);transition:transform .2s}
     .icon-header:hover{transform:scale(1.15)}
@@ -52,44 +53,47 @@
 <body>
 
   <!-- 4 Fondos rotativos -->
-  <div class="bg-slides"></div>
-  <div class="bg-slides"></div>
-  <div class="bg-slides"></div>
-  <div class="bg-slides"></div>
+  <div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div>
 
   <div class="header-top">
-    <div class="logo">🫒 Olivazo-Py</div>
+    <div class="logo">OlivaZo Store</div>
     <div class="icon-set">
       <a href="tel:+595983559813"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header"></a>
       <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header"></a>
     </div>
   </div>
 
-  <!-- Galería 1: Aceites -->
+  <!-- Galería 1: Aceites de Oliva -->
   <h2 class="gallery-title">Aceites de Oliva</h2>
   <div class="gallery" id="galleryAceites"></div>
 
-  <!-- Galería 2: Aceitunas & Snacks -->
+  <!-- Galería 2: Suplementos & Gym -->
+  <h2 class="gallery-title">Suplementos & Gym</h2>
+  <div class="gallery" id="galleryGym"></div>
+
+  <!-- Galería 3: Aceitunas & Snacks -->
   <h2 class="gallery-title">Aceitunas & Snacks</h2>
   <div class="gallery" id="gallerySnacks"></div>
 
-  <!-- Galería 3: Cosmética Natural -->
+  <!-- Galería 4: Cosmética Natural -->
   <h2 class="gallery-title">Cosmética Natural</h2>
   <div class="gallery" id="galleryCosmetica"></div>
-
-  <!-- Galería 4: Suplementos Gym -->
-  <h2 class="gallery-title">Suplementos & Gym</h2>
-  <div class="gallery" id="galleryGym"></div>
 
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
 
-    /* ==========  DATOS NUEVOS  ========== */
     const aceites = [
       {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",price:200000,discountPrice:180000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Envase plástico económico"},
       {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",price:200000,discountPrice:180000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Segunda unidad – mejor precio"},
       {name:"Aceite Virgen Extra 500 ml (vidrio)",price:100000,discountPrice:90000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",desc:"Botella transparente sin etiqueta"},
       {name:"Aceite Virgen Extra 1 L (pet)",price:150000,discountPrice:135000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Pet descartable sin marca"}
+    ];
+
+    const gym = [
+      {name:"Proteína Whey 1 kg",price:180000,discountPrice:160000,image:"https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80",desc:"Sabor vainilla"},
+      {name:"BCAA 300 g",price:90000,discountPrice:80000,image:"https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=800&q=80",desc:"Recuperación muscular"},
+      {name:"Creatina 250 g",price:70000,discountPrice:60000,image:"https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&w=800&q=80",desc:"Fuerza y volumen"},
+      {name:"Shaker OlivaZo",price:25000,discountPrice:20000,image:"https://images.unsplash.com/photo-1581006852262-e4307cf6283a?auto=format&fit=crop&w=800&q=80",desc:"700 ml con agitador"}
     ];
 
     const snacks = [
@@ -106,14 +110,6 @@
       {name:"Aceite Corporal de Oliva Virgen",price:70000,discountPrice:65000,image:"https://images.unsplash.com/photo-1593326041306-f1c8cc1eaaa5?auto=format&fit=crop&w=800&q=80",desc:"Frasco 100 ml"}
     ];
 
-    const gym = [
-      {name:"Proteína Whey 1 kg",price:180000,discountPrice:160000,image:"https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80",desc:"Sabor vainilla"},
-      {name:"BCAA 300 g",price:90000,discountPrice:80000,image:"https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=800&q=80",desc:"Recuperación muscular"},
-      {name:"Creatina 250 g",price:70000,discountPrice:60000,image:"https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&w=800&q=80",desc:"Fuerza y volumen"},
-      {name:"Shaker Olivazo-Py",price:25000,discountPrice:20000,image:"https://images.unsplash.com/photo-1581006852262-e4307cf6283a?auto=format&fit=crop&w=800&q=80",desc:"700 ml con agitador"}
-    ];
-
-    /* ==========  RENDER  ========== */
     function render(list,id){
       const g=document.getElementById(id);
       list.forEach((p,i)=>{
@@ -146,29 +142,4 @@
     }
     function send(i,id){
       const list=window[id.replace('gallery','')];
-      const p=list[i];
-      const q=+document.getElementById(`${id}_qty${i}`).value;
-      const name=document.getElementById(`${id}_name${i}`).value||"Sin nombre";
-      const phone=document.getElementById(`${id}_phone${i}`).value.trim();
-      const unit=q>=2?p.discountPrice:p.price;
-      const total=q*unit;
-      const msg=`🫒 Pedido Olivazo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${p.name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-      const enc=encodeURIComponent(msg);
-      window.open(`https://wa.me/595983559813?text=${enc}`,"_blank");
-      if(phone.length>=8){
-        const dest=phone.startsWith("0")?"595"+phone.slice(1):phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
-      }
-    }
-
-    render(aceites,'galleryAceites');
-    render(snacks,'gallerySnacks');
-    render(cosmeticos,'galleryCosmetica');
-    render(gym,'galleryGym');
-  </script>
-  <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
-  © 2025 Olivaz-Py - Todos los derechos reservados · Marcelo Benítez Noguera | HTML5
-</footer>
-
-</body>
-</html>
+      const p
