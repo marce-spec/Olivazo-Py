@@ -158,7 +158,8 @@
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
         window.open(`https://wa.me/${dest}?text=${enc}`, "_blank");
       }
-      window.open(`https://wa.me/595983559813?text=${enc}`, "_blank");
+      const msgAdmin = `📦 Nuevo pedido recibido:\n${msg}`;
+window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgAdmin)}`, "_blank");
     }
 
     function render(list, id, rule){
