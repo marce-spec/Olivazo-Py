@@ -11,25 +11,14 @@
     html,body{height:100%}
     body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;background:#000}
 
-    /* Fondos rotativos */
-    .bg-slides{
-      position:fixed;inset:0;z-index:-2;
-      background-size:60% auto;
-      background-position:center;
-      background-repeat:no-repeat;
-      animation:fade 16s infinite;
-      opacity:0;
-    }
+    .bg-slides{position:fixed;inset:0;z-index:-2;background-size:60% auto;background-position:center;background-repeat:no-repeat;animation:fade 16s infinite;opacity:0}
     .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
     .bg-slides:nth-child(2){background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80');animation-delay:4s}
     .bg-slides:nth-child(3){background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80');animation-delay:8s}
     .bg-slides:nth-child(4){background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80');animation-delay:12s}
     @keyframes fade{0%,20%{opacity:1}25%,95%{opacity:0}100%{opacity:0}}
 
-    body::after{
-      content:'';position:fixed;inset:0;
-      background:var(--bg-overlay);z-index:-1;
-    }
+    body::after{content:'';position:fixed;inset:0;background:var(--bg-overlay);z-index:-1}
 
     .header-top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
     .logo{font-size:26px;font-weight:600;display:flex;align-items:center;gap:8px}
@@ -76,18 +65,17 @@
 
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
-
     const aceitePrices = [[100000, 90000, 80000],[120000, 110000, 100000],[115000, 110000, 100000]];
     const defaultRules = [55000, 50000, 45000];
 
-    // ==== ACEITES ====
+    // ===== ACEITES =====
     const aceites = [
       {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",desc:"Envase plástico económico",image:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceite Virgen Extra 500 ml (vidrio)",desc:"Botella transparente sin etiqueta",image:"https://images.unsplash.com/photo-1622297845775-5ff3fef71d7d?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceite Virgen Extra 500 ml (vidrio)",desc:"Botella transparente sin etiqueta",image:"https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceite Virgen Extra 1 L (pet)",desc:"Pet descartable sin marca",image:"https://images.unsplash.com/photo-1605651531144-51381895e23d?auto=format&fit=crop&w=800&q=60"}
     ];
 
-    // ==== SUPLEMENTOS & GYM ====
+    // ===== SUPLEMENTOS & GYM =====
     const gym = [
       {name:"Proteína Whey 1 kg",desc:"Sabor vainilla",image:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=800&q=60"},
       {name:"BCAA 300 g",desc:"Recuperación muscular",image:"https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=800&q=60"},
@@ -95,15 +83,15 @@
       {name:"Shaker OlivaZo",desc:"700 ml con agitador",image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=60"}
     ];
 
-    // ==== ACEITUNAS & SNACKS ====
+    // ===== ACEITUNAS & SNACKS =====
     const snacks = [
       {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1571176094527-9d906d9ba42c?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1602253050119-6a4f4d6d4b0f?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
       {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
     ];
 
-    // ==== COSMÉTICA NATURAL ====
+    // ===== COSMÉTICA NATURAL =====
     const cosmeticos = [
       {name:"Crema Facial Hidratante de Oliva",desc:"Pote 50 ml – piel seca",image:"https://images.unsplash.com/photo-1570194065650-d99fb4a38b8e?auto=format&fit=crop&w=800&q=60"},
       {name:"Jabón Artesanal 100 % Oliva",desc:"Barra 100 g – sin perfume",image:"https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=800&q=60"},
