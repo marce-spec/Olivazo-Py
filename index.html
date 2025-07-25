@@ -52,7 +52,6 @@
 </head>
 <body>
 
-  <!-- 4 Fondos rotativos -->
   <div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div>
 
   <header class="header-top">
@@ -63,32 +62,29 @@
     </div>
   </header>
 
-  <!-- Galería 1: Aceites de Oliva -->
   <h2 class="gallery-title">Aceites de Oliva</h2>
   <div class="gallery" id="galleryAceites"></div>
 
-  <!-- Galería 2: Suplementos & Gym -->
   <h2 class="gallery-title">Suplementos & Gym</h2>
   <div class="gallery" id="galleryGym"></div>
 
-  <!-- Galería 3: Aceitunas & Snacks -->
   <h2 class="gallery-title">Aceitunas & Snacks</h2>
   <div class="gallery" id="gallerySnacks"></div>
 
-  <!-- Galería 4: Cosmética Natural -->
   <h2 class="gallery-title">Cosmética Natural</h2>
   <div class="gallery" id="galleryCosmetica"></div>
 
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
 
-    // Precios por galería según cantidad
-    const priceRules = {
-      aceites:    [100000, 90000, 80000], // 1ª, 2ª, 3+ unidades
-      gym:        [120000, 110000, 100000],
-      snacks:     [115000, 110000, 100000],
-      cosmeticos: [ 55000,  50000,  45000] // Ejemplo, puedes cambiarlo
-    };
+    // Precios por producto en la galería de aceites
+    const aceitePrices = [
+      [100000, 90000, 80000], // Foto 1
+      [120000, 110000, 100000], // Foto 2
+      [115000, 110000, 100000]  // Foto 3
+    ];
+
+    const defaultRules = [55000, 50000, 45000]; // Para otras galerías
 
     const aceites = [
       {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",desc:"Envase plástico económico"},
@@ -120,6 +116,51 @@
       return rule[2];
     }
 
+    function renderAceites(list){
+      const g = document.getElementById('galleryAceites');
+      list.forEach((p, i) => {
+        const d = document.createElement("div");
+        d.className = "product";
+        d.innerHTML = `
+          <img src="https://via.placeholder.com/380x250/4caf50/fff?text=Producto" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <p id="aceite_price${i}"><strong>Precio:</strong> ${formatGs(aceitePrices[i][0])} c/u</p>
+          <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
+          <p id="aceite_total${i}"></p>
+          <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
+          <label>Tu WhatsApp: <input type="text" id="aceite_phone${i}" placeholder="0981…"></label>
+          <button onclick="sendAceite(${i})">📝 Pedir</button>`;
+        g.appendChild(d);
+        document.getElementById(`aceite_qty${i}`).addEventListener("input", () => updAceite(i));
+        updAceite(i);
+      });
+    }
+
+    function updAceite(i){
+      const q = +document.getElementById(`aceite_qty${i}`).value;
+      const unit = calcPrice(q, aceitePrices[i]);
+      document.getElementById(`aceite_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
+      document.getElementById(`aceite_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
+    }
+
+    function sendAceite(i){
+      const q = +document.getElementById(`aceite_qty${i}`).value;
+      const name = document.getElementById(`aceite_name${i}`).value || "Sin nombre";
+      const phone = document.getElementById(`aceite_phone${i}`).value.trim();
+      const unit = calcPrice(q, aceitePrices[i]);
+      const total = q * unit;
+
+      const msg = `🌿 Pedido OlivaZo Store\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+
+      const enc = encodeURIComponent(msg);
+      if (phone.length >= 8){
+        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+        window.open(`https://wa.me/${dest}?text=${enc}`, "_blank");
+      }
+      window.open(`https://wa.me/595983559813?text=${enc}`, "_blank");
+    }
+
     function render(list, id, rule){
       const g = document.getElementById(id);
       list.forEach((p, i) => {
@@ -134,7 +175,7 @@
           <p id="${id}_total${i}"></p>
           <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
           <label>Tu WhatsApp: <input type="text" id="${id}_phone${i}" placeholder="0981…"></label>
-          <button onclick="send(${i},'${id}')">📝 Pedir</button>`;
+          <button onclick="send(${i},'${id}',${JSON.stringify(rule)})">📝 Pedir</button>`;
         g.appendChild(d);
         document.getElementById(`${id}_qty${i}`).addEventListener("input", () => upd(i, id, rule));
         upd(i, id, rule);
@@ -148,9 +189,8 @@
       document.getElementById(`${id}_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
     }
 
-    function send(i, id){
+    function send(i, id, rule){
       const list = window[id.replace('gallery','')];
-      const rule = priceRules[id.replace('gallery','')];
       const q = +document.getElementById(`${id}_qty${i}`).value;
       const name = document.getElementById(`${id}_name${i}`).value || "Sin nombre";
       const phone = document.getElementById(`${id}_phone${i}`).value.trim();
@@ -159,26 +199,18 @@
 
       const msg = `🌿 Pedido OlivaZo Store\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
 
-      // WhatsApp al cliente
       const enc = encodeURIComponent(msg);
       if (phone.length >= 8){
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
         window.open(`https://wa.me/${dest}?text=${enc}`, "_blank");
       }
-      // WhatsApp al negocio
       window.open(`https://wa.me/595983559813?text=${enc}`, "_blank");
     }
 
-    // Exponer listas globalmente
-    window.aceites = aceites;
-    window.gym = gym;
-    window.snacks = snacks;
-    window.cosmeticos = cosmeticos;
-
-    render(aceites, 'galleryAceites', priceRules.aceites);
-    render(gym, 'galleryGym', priceRules.gym);
-    render(snacks, 'gallerySnacks', priceRules.snacks);
-    render(cosmeticos, 'galleryCosmetica', priceRules.cosmeticos);
+    renderAceites(aceites);
+    render(gym, 'galleryGym', defaultRules);
+    render(snacks, 'gallerySnacks', defaultRules);
+    render(cosmeticos, 'galleryCosmetica', defaultRules);
   </script>
 
   <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
