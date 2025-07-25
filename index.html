@@ -9,9 +9,9 @@
     :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden}
+    body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;background:#000}
 
-    /* 4 Fondos rotativos */
+    /* Fondos rotativos */
     .bg-slides{
       position:fixed;inset:0;z-index:-2;
       background-size:60% auto;
@@ -55,13 +55,13 @@
   <!-- 4 Fondos rotativos -->
   <div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div>
 
-  <div class="header-top">
+  <header class="header-top">
     <div class="logo">OlivaZo Store</div>
     <div class="icon-set">
       <a href="tel:+595983559813"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header"></a>
       <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header"></a>
     </div>
-  </div>
+  </header>
 
   <!-- Galería 1: Aceites de Oliva -->
   <h2 class="gallery-title">Aceites de Oliva</h2>
@@ -82,64 +82,107 @@
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
 
+    // Precios por galería según cantidad
+    const priceRules = {
+      aceites:    [100000, 90000, 80000], // 1ª, 2ª, 3+ unidades
+      gym:        [120000, 110000, 100000],
+      snacks:     [115000, 110000, 100000],
+      cosmeticos: [ 55000,  50000,  45000] // Ejemplo, puedes cambiarlo
+    };
+
     const aceites = [
-      {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",price:200000,discountPrice:180000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Envase plástico económico"},
-      {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",price:200000,discountPrice:180000,image:"https://images.unsplash.com/photo-1600891964169-b03ea8b43bf1?auto=format&fit=crop&w=800&q=80",desc:"Segunda unidad – mejor precio"},
-      {name:"Aceite Virgen Extra 500 ml (vidrio)",price:100000,discountPrice:90000,image:"https://cdn.pixabay.com/photo/2020/08/13/16/58/olive-oil-5484401_1280.jpg",desc:"Botella transparente sin etiqueta"},
-      {name:"Aceite Virgen Extra 1 L (pet)",price:150000,discountPrice:135000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Pet descartable sin marca"}
+      {name:"Aceite Virgen Extra – Garrafa 2 L (sin marca)",desc:"Envase plástico económico"},
+      {name:"Aceite Virgen Extra 500 ml (vidrio)",desc:"Botella transparente sin etiqueta"},
+      {name:"Aceite Virgen Extra 1 L (pet)",desc:"Pet descartable sin marca"}
     ];
-
     const gym = [
-      {name:"Proteína Whey 1 kg",price:180000,discountPrice:160000,image:"https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80",desc:"Sabor vainilla"},
-      {name:"BCAA 300 g",price:90000,discountPrice:80000,image:"https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=800&q=80",desc:"Recuperación muscular"},
-      {name:"Creatina 250 g",price:70000,discountPrice:60000,image:"https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?auto=format&fit=crop&w=800&q=80",desc:"Fuerza y volumen"},
-      {name:"Shaker OlivaZo",price:25000,discountPrice:20000,image:"https://images.unsplash.com/photo-1581006852262-e4307cf6283a?auto=format&fit=crop&w=800&q=80",desc:"700 ml con agitador"}
+      {name:"Proteína Whey 1 kg",desc:"Sabor vainilla"},
+      {name:"BCAA 300 g",desc:"Recuperación muscular"},
+      {name:"Creatina 250 g",desc:"Fuerza y volumen"},
+      {name:"Shaker OlivaZo",desc:"700 ml con agitador"}
     ];
-
     const snacks = [
-      {name:"Aceitunas Verdes Curadas con Hierbas",price:25000,discountPrice:22000,image:"https://images.unsplash.com/photo-1587982649685-fbc3698hammer?auto=format&fit=crop&w=800&q=80",desc:"Frasco 250 g"},
-      {name:"Aceitunas Negras en Salmuera",price:27000,discountPrice:24000,image:"https://cdn.pixabay.com/photo/2018/07/19/14/45/olives-3548564_1280.jpg",desc:"Envase 250 g"},
-      {name:"Aceitunas Rellenas de Pimiento",price:28000,discountPrice:25000,image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=80",desc:"Frasco 220 g"},
-      {name:"Mix Snack Aceituna & Almendra",price:32000,discountPrice:29000,image:"https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=800&q=80",desc:"Bolsa 150 g"}
+      {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g"},
+      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g"},
+      {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g"},
+      {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g"}
     ];
-
     const cosmeticos = [
-      {name:"Crema Facial Hidratante de Oliva",price:55000,discountPrice:50000,image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=80",desc:"Pote 50 ml – piel seca"},
-      {name:"Jabón Artesanal 100 % Oliva",price:20000,discountPrice:18000,image:"https://cdn.pixabay.com/photo/2016/10/22/20/34/soap-1761330_1280.jpg",desc:"Barra 100 g – sin perfume"},
-      {name:"Bálsamo Labial Oliva & Miel",price:15000,discountPrice:13000,image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=80",desc:"Stick 15 ml"},
-      {name:"Aceite Corporal de Oliva Virgen",price:70000,discountPrice:65000,image:"https://images.unsplash.com/photo-1593326041306-f1c8cc1eaaa5?auto=format&fit=crop&w=800&q=80",desc:"Frasco 100 ml"}
+      {name:"Crema Facial Hidratante de Oliva",desc:"Pote 50 ml – piel seca"},
+      {name:"Jabón Artesanal 100 % Oliva",desc:"Barra 100 g – sin perfume"},
+      {name:"Bálsamo Labial Oliva & Miel",desc:"Stick 15 ml"},
+      {name:"Aceite Corporal de Oliva Virgen",desc:"Frasco 100 ml"}
     ];
 
-    function render(list,id){
-      const g=document.getElementById(id);
-      list.forEach((p,i)=>{
-        const d=document.createElement("div");
-        d.className="product";
-        d.innerHTML=`
-          <img src="${p.image}" alt="${p.name}">
+    function calcPrice(q, rule){
+      if (q === 1) return rule[0];
+      if (q === 2) return rule[1];
+      return rule[2];
+    }
+
+    function render(list, id, rule){
+      const g = document.getElementById(id);
+      list.forEach((p, i) => {
+        const d = document.createElement("div");
+        d.className = "product";
+        d.innerHTML = `
+          <img src="https://via.placeholder.com/380x250/4caf50/fff?text=Producto" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(p.price)} c/u</p>
+          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(rule[0])} c/u</p>
           <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
           <p id="${id}_total${i}"></p>
           <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
           <label>Tu WhatsApp: <input type="text" id="${id}_phone${i}" placeholder="0981…"></label>
           <button onclick="send(${i},'${id}')">📝 Pedir</button>`;
         g.appendChild(d);
-        document.getElementById(`${id}_qty${i}`).addEventListener("input",()=>upd(i,id,list));
-        upd(i,id,list);
+        document.getElementById(`${id}_qty${i}`).addEventListener("input", () => upd(i, id, rule));
+        upd(i, id, rule);
       });
     }
-    function upd(i,id,list){
-      const q=+document.getElementById(`${id}_qty${i}`).value;
-      const p=list[i];
-      const disc=q>=2;
-      const unit=disc?p.discountPrice:p.price;
-      document.getElementById(`${id}_price${i}`).innerHTML=disc
-        ? `<strong>Precio:</strong> <span class="discount">${formatGs(unit)} c/u descuento</span>`
-        : `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
-      document.getElementById(`${id}_total${i}`).textContent=`Total: ${formatGs(q*unit)}`;
+
+    function upd(i, id, rule){
+      const q = +document.getElementById(`${id}_qty${i}`).value;
+      const unit = calcPrice(q, rule);
+      document.getElementById(`${id}_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
+      document.getElementById(`${id}_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
     }
-    function send(i,id){
-      const list=window[id.replace('gallery','')];
-      const p
+
+    function send(i, id){
+      const list = window[id.replace('gallery','')];
+      const rule = priceRules[id.replace('gallery','')];
+      const q = +document.getElementById(`${id}_qty${i}`).value;
+      const name = document.getElementById(`${id}_name${i}`).value || "Sin nombre";
+      const phone = document.getElementById(`${id}_phone${i}`).value.trim();
+      const unit = calcPrice(q, rule);
+      const total = q * unit;
+
+      const msg = `🌿 Pedido OlivaZo Store\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+
+      // WhatsApp al cliente
+      const enc = encodeURIComponent(msg);
+      if (phone.length >= 8){
+        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+        window.open(`https://wa.me/${dest}?text=${enc}`, "_blank");
+      }
+      // WhatsApp al negocio
+      window.open(`https://wa.me/595983559813?text=${enc}`, "_blank");
+    }
+
+    // Exponer listas globalmente
+    window.aceites = aceites;
+    window.gym = gym;
+    window.snacks = snacks;
+    window.cosmeticos = cosmeticos;
+
+    render(aceites, 'galleryAceites', priceRules.aceites);
+    render(gym, 'galleryGym', priceRules.gym);
+    render(snacks, 'gallerySnacks', priceRules.snacks);
+    render(cosmeticos, 'galleryCosmetica', priceRules.cosmeticos);
+  </script>
+
+  <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
+    © 2025 OlivaZo Store - Todos los derechos reservados · Marcelo Benítez Noguera | HTML5
+  </footer>
+</body>
+</html>
