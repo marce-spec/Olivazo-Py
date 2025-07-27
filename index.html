@@ -2,210 +2,158 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>OlivaZo-Py</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Olivazo-Py</title>
   <style>
-    :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;background:#000}
+    .bg-slides {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-size: 60% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: fade 16s infinite;
+      opacity: 0;
+    }
+    .bg-slides:nth-child(1) { background: url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80'); animation-delay: 0s; }
+    .bg-slides:nth-child(2) { background: url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80'); animation-delay: 4s; }
+    .bg-slides:nth-child(3) { background: url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80'); animation-delay: 8s; }
+    .bg-slides:nth-child(4) { background: url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80'); animation-delay: 12s; }
 
-    .bg-slides{position:fixed;inset:0;z-index:-2;background-size:60% auto;background-position:center;background-repeat:no-repeat;animation:fade 16s infinite;opacity:0}
-    .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
-    .bg-slides:nth-child(2){background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80');animation-delay:4s}
-    .bg-slides:nth-child(3){background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80');animation-delay:8s}
-    .bg-slides:nth-child(4){background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80');animation-delay:12s}
-    @keyframes fade{0%,20%{opacity:1}25%,95%{opacity:0}100%{opacity:0}}
+    @keyframes fade {
+      0%, 20% { opacity: 1; }
+      25%, 95% { opacity: 0; }
+      100% { opacity: 0; }
+    }
 
-    body::after{content:'';position:fixed;inset:0;background:var(--bg-overlay);z-index:-1}
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--bg-overlay);
+      z-index: -1;
+    }
 
-    .header-top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
-    .logo{font-size:26px;font-weight:600;display:flex;align-items:center;gap:8px}
-    .logo::before{content:"🌿";font-size:30px}
-    .icon-set{display:flex;gap:12px}
-    .icon-header{width:30px;height:30px;filter:invert(1);transition:transform .2s}
-    .icon-header:hover{transform:scale(1.15)}
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(4px);
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo::before {
+      content: "🌿";
+      font-size: 30px;
+    }
+    .icon-set {
+      display: flex;
+      gap: 12px;
+    }
+    .icon-header {
+      width: 30px;
+      height: 30px;
+      filter: invert(1);
+      transition: transform .2s;
+    }
+    .icon-header:hover {
+      transform: scale(1.15);
+    }
 
-    .gallery-title{text-align:center;margin:50px 0 20px;font-size:28px;font-weight:600}
-    .gallery{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;padding:0 20px 60px}
-    .product{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:20px;width:100%;max-width:380px;backdrop-filter:blur(8px);transition:.3s}
-    .product:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,.4)}
-    .product img{width:100%;border-radius:8px;margin-bottom:12px}
-    .discount{color:#8aff8a}
-    label{font-size:14px;margin-top:10px}
-    input[type=number],input[type=text]{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;color:#111}
-    button{margin-top:12px;padding:10px 18px;background:var(--verde);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600}
-    button:hover{background:var(--verde-osc)}
+    .gallery-title {
+      text-align: center;
+      margin: 50px 0 20px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      padding: 0 20px 60px;
+    }
+    .product {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      backdrop-filter: blur(8px);
+      transition: .3s;
+    }
+    .product:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .discount {
+      color: #8aff8a;
+    }
+    .discount-tag {
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 14px;
+      color: #8aff8a;
+      font-weight: 500;
+    }
+    label {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    input[type=number], input[type=text] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 4px;
+      color: #111;
+    }
+    button {
+      margin-top: 12px;
+      padding: 10px 18px;
+      background: var(--verde);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background: var(--verde-osc);
+    }
   </style>
 </head>
 <body>
-
-  <div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div>
-
-  <header class="header-top">
-    <div class="logo">OlivaZo-Py</div>
+  <div class="header-top">
+    <div class="logo">Olivazo-Py</div>
     <div class="icon-set">
-      <a href="tel:+595983559813"><img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Llamar" class="icon-header"></a>
-      <a href="https://wa.me/595983559813" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-header"></a>
+      <img src="icon1.png" class="icon-header" alt="Icono 1">
+      <img src="icon2.png" class="icon-header" alt="Icono 2">
     </div>
-  </header>
+  </div>
 
-  <h2 class="gallery-title">Aceites de Oliva</h2>
-  <div class="gallery" id="galleryAceites"></div>
-
-  <h2 class="gallery-title">Suplementos & Gym</h2>
-  <div class="gallery" id="galleryGym"></div>
-
-  <h2 class="gallery-title">Aceitunas & Snacks</h2>
-  <div class="gallery" id="gallerySnacks"></div>
-
-  <h2 class="gallery-title">Cosmética Natural</h2>
-  <div class="gallery" id="galleryCosmetica"></div>
-
-  <script>
-    const formatGs = n => "Gs. " + n.toLocaleString();
-    const aceitePrices = [[100000, 90000, 80000],[120000, 110000, 100000],[115000, 110000, 100000]];
-    const defaultRules = [55000, 50000, 45000];
-
-    // ===== ACEITES =====
-    const aceites = [
-      {name:"Aceite Virgen Extra – Garrafa 2 L (desc. a partir de 2 und.)",desc:"Envase plástico económico",image:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceite Virgen Extra 500 ml (vidrio)",desc:"Botella transparente sin etiqueta",image:"https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceite Virgen Extra 1 L (pet)",desc:"Pet descartable sin marca",image:"https://images.unsplash.com/photo-1605651531144-51381895e23d?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    // ===== SUPLEMENTOS & GYM =====
-    const gym = [
-      {name:"Proteína Whey 1 kg",desc:"Sabor vainilla",image:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=800&q=60"},
-      {name:"BCAA 300 g",desc:"Recuperación muscular",image:"https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=800&q=60"},
-      {name:"Creatina 250 g",desc:"Fuerza y volumen",image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=60"},
-      {name:"Shaker OlivaZo",desc:"700 ml con agitador",image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    // ===== ACEITUNAS & SNACKS =====
-    const snacks = [
-      {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1602253050119-6a4f4d6d4b0f?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
-      {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    // ===== COSMÉTICA NATURAL =====
-    const cosmeticos = [
-      {name:"Crema Facial Hidratante de Oliva",desc:"Pote 50 ml – piel seca",image:"https://images.unsplash.com/photo-1570194065650-d99fb4a38b8e?auto=format&fit=crop&w=800&q=60"},
-      {name:"Jabón Artesanal 100 % Oliva",desc:"Barra 100 g – sin perfume",image:"https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=800&q=60"},
-      {name:"Bálsamo Labial Oliva & Miel",desc:"Stick 15 ml",image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceite Corporal de Oliva Virgen",desc:"Frasco 100 ml",image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    function calcPrice(q, rule){
-      if (q === 1) return rule[0];
-      if (q === 2) return rule[1];
-      return rule[2];
-    }
-
-    function renderAceites(list){
-      const g = document.getElementById('galleryAceites');
-      list.forEach((p, i) => {
-        const d = document.createElement("div");
-        d.className = "product";
-        d.innerHTML = `
-          <img src="${p.image}" alt="${p.name}">
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-          <p id="aceite_price${i}"><strong>Precio:</strong> ${formatGs(aceitePrices[i][0])} c/u</p>
-          <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
-          <p id="aceite_total${i}"></p>
-          <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
-          <label>Tu WhatsApp: <input type="text" id="aceite_phone${i}" placeholder="0981…"></label>
-          <button onclick="sendAceite(${i})">📝 Pedir</button>`;
-        g.appendChild(d);
-        document.getElementById(`aceite_qty${i}`).addEventListener("input", () => updAceite(i));
-        updAceite(i);
-      });
-    }
-
-    function updAceite(i){
-      const q = +document.getElementById(`aceite_qty${i}`).value;
-      const unit = calcPrice(q, aceitePrices[i]);
-      document.getElementById(`aceite_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
-      document.getElementById(`aceite_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
-    }
-
-    function sendAceite(i){
-      const q = +document.getElementById(`aceite_qty${i}`).value;
-      const name = document.getElementById(`aceite_name${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`aceite_phone${i}`).value.trim();
-      const unit = calcPrice(q, aceitePrices[i]);
-      const total = q * unit;
-
-      const msg = `🌿 Pedido OlivaZo Store\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-
-      const enc = encodeURIComponent(msg);
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
-      }
-      const msgAdmin = `📦 Nuevo pedido recibido:\n${msg}`;
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgAdmin)}`,"_blank");
-    }
-
-    function render(list, id, rule){
-      const g = document.getElementById(id);
-      list.forEach((p, i) => {
-        const d = document.createElement("div");
-        d.className = "product";
-        d.innerHTML = `
-          <img src="${p.image}" alt="${p.name}">
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(rule[0])} c/u</p>
-          <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
-          <p id="${id}_total${i}"></p>
-          <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
-          <label>Tu WhatsApp: <input type="text" id="${id}_phone${i}" placeholder="0981…"></label>
-          <button onclick="send(${i},'${id}',${JSON.stringify(rule)})">📝 Pedir</button>`;
-        g.appendChild(d);
-        document.getElementById(`${id}_qty${i}`).addEventListener("input", () => upd(i, id, rule));
-        upd(i, id, rule);
-      });
-    }
-
-    function upd(i, id, rule){
-      const q = +document.getElementById(`${id}_qty${i}`).value;
-      const unit = calcPrice(q, rule);
-      document.getElementById(`${id}_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u`;
-      document.getElementById(`${id}_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
-    }
-
-    function send(i, id, rule){
-      const list = window[id.replace('gallery','')];
-      const q = +document.getElementById(`${id}_qty${i}`).value;
-      const name = document.getElementById(`${id}_name${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`${id}_phone${i}`).value.trim();
-      const unit = calcPrice(q, rule);
-      const total = q * unit;
-
-      const msg = `🌿 Pedido OlivaZo-Py Mayorista\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-
-      const enc = encodeURIComponent(msg);
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
-      }
-      const msgAdmin = `📦 Nuevo pedido recibido:\n${msg}`;
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgAdmin)}`,"_blank");
-    }
-
-    renderAceites(aceites);
-    render(gym, 'galleryGym', defaultRules);
-    render(snacks, 'gallerySnacks', defaultRules);
-    render(cosmeticos, 'galleryCosmetica', defaultRules);
-  </script>
-
-  <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
-    © 2025 OlivaZo-Py - Todos los derechos reservados · Marcelo Benítez Noguera | HTML5
-  </footer>
+  <h2 class="gallery-title">Nuestros productos</h2>
+  <div class="gallery">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=80" alt="Aceite de oliva">
+      <h3>Oliva Premium</h3>
+      <p>Precio c/u: <span class="discount">Gs. 25.000</span> <span class="discount-tag">con descuento desde unidad 2</span></p>
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1">
+      <button>Agregar al carrito</button>
+    </div>
+  </div>
 </body>
 </html>
