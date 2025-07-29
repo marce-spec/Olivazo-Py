@@ -160,9 +160,9 @@
       const enc = encodeURIComponent(msg);
       if (phone.length >= 8){
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
+        navigator.sendBeacon(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`);
       }
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
+      navigator.sendBeacon(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`);
     }
 
     function render(list, id, rule){
