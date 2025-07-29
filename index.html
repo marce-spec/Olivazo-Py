@@ -92,7 +92,7 @@
 
     const snacks = [
       {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1602256333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
       {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
     ];
@@ -139,18 +139,20 @@
 
     function sendAceite(i){
       const q    = +document.getElementById(`aceite_qty${i}`).value;
-      const name = document.getElementById(`aceite_name${i}`).value || "Sin nombre";
+      const name = document.getElementById(`aceite_name${i}`).value.trim();
       const phone= document.getElementById(`aceite_phone${i}`).value.trim();
-      const unit = calcPrice(q, aceitePrices[i]);
-      const total= q * unit;
+      if(!name || !phone || phone.length < 8){
+        alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
+        return;
+      }
+      const unit  = calcPrice(q, aceitePrices[i]);
+      const total = q * unit;
 
       const msgCliente = `🌿 Pedido OlivaZo Store\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
       const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo Store\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
 
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
-      }
+      const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+      window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
       window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
     }
 
@@ -186,18 +188,20 @@
     function send(i, id, rule){
       const list = window[id.replace('gallery','')];
       const q    = +document.getElementById(`${id}_qty${i}`).value;
-      const name = document.getElementById(`${id}_name${i}`).value || "Sin nombre";
+      const name = document.getElementById(`${id}_name${i}`).value.trim();
       const phone= document.getElementById(`${id}_phone${i}`).value.trim();
-      const unit = calcPrice(q, rule);
-      const total= q * unit;
+      if(!name || !phone || phone.length < 8){
+        alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
+        return;
+      }
+      const unit  = calcPrice(q, rule);
+      const total = q * unit;
 
       const msgCliente = `🌿 Pedido OlivaZo-Py\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
       const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo-Py\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
 
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
-      }
+      const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+      window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
       window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
     }
 
