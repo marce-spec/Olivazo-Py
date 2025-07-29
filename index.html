@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google / SEO -->
-<title>OlivaZo-Py - Aceites de Oliva, Suplementos y Cosmética Natural</title>
-<meta name="description" content="Comprá aceite de oliva virgen, suplementos deportivos, cosmética natural y más. Envíos a todo Paraguay.">
-<meta name="keywords" content="aceite oliva, suplementos gym, cosmética natural, aceitunas, snacks saludables">
-<meta name="author" content="Marcelo Benítez Noguera">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Facebook / Instagram -->
-<meta property="og:title" content="OlivaZo-Py - Tienda Natural">
-<meta property="og:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
-<meta property="og:image" content="https://TU-SITIO.com/imagen-destacada.jpg">
-<meta property="og:url" content="https://TU-SITIO.com">
-<meta property="og:type" content="website">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OlivaZo-Py - Tienda Natural">
-<meta name="twitter:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
-<meta name="twitter:image" content="https://TU-SITIO.com/imagen-destacada.jpg">
-p
-  <meta charset="UTF-8">
-  <title>OlivaZo-Py</title>
+  <!-- SEO & Open Graph -->
+  <title>OlivaZo-Py - Aceites de Oliva, Suplementos y Cosmética Natural</title>
+  <meta name="description" content="Comprá aceite de oliva virgen, suplementos deportivos, cosmética natural y más. Envíos a todo Paraguay.">
+  <meta name="keywords" content="aceite oliva, suplementos gym, cosmética natural, aceitunas, snacks saludables">
+  <meta name="author" content="Marcelo Benítez Noguera">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Facebook / Instagram -->
+  <meta property="og:title" content="OlivaZo-Py - Tienda Natural">
+  <meta property="og:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=60">
+  <meta property="og:url" content="https://olivazopy.com">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OlivaZo-Py - Tienda Natural">
+  <meta name="twitter:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=60">
+
+  <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
@@ -31,7 +29,7 @@ p
     html,body{height:100%}
     body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;background:#000}
 
-    .bg-slides{position:fixed;inset:0;z-index:-2;background-size:60% auto;background-position:center;background-repeat:no-repeat;animation:fade 16s infinite;opacity:0}
+    .bg-slides{position:fixed;inset:0;z-index:-2;background-size:cover;background-position:center;background-repeat:no-repeat;animation:fade 16s infinite;opacity:0}
     .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
     .bg-slides:nth-child(2){background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80');animation-delay:4s}
     .bg-slides:nth-child(3){background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80');animation-delay:8s}
@@ -52,7 +50,7 @@ p
     .product{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:20px;width:100%;max-width:380px;backdrop-filter:blur(8px);transition:.3s}
     .product:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,.4)}
     .product img{width:100%;border-radius:8px;margin-bottom:12px}
-    .discount{color:#8aff8a;display:none}
+    .discount{color:#8aff8a}
     label{font-size:14px;margin-top:10px}
     input[type=number],input[type=text]{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;color:#111}
     button{margin-top:12px;padding:10px 18px;background:var(--verde);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:6px}
@@ -61,6 +59,7 @@ p
 </head>
 <body>
 
+  <!-- fondo animado -->
   <div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div><div class="bg-slides"></div>
 
   <header class="header-top">
@@ -85,7 +84,7 @@ p
 
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
-    const aceitePrices = [[100000, 90000, 80000],[120000, 110000, 100000],[115000, 110000, 100000]];
+    const aceitePrices = [[100000, 90000, 80000], [120000, 110000, 100000], [115000, 110000, 100000]];
     const defaultRules = [55000, 50000, 45000];
 
     const aceites = [
@@ -116,9 +115,7 @@ p
     ];
 
     function calcPrice(q, rule){
-      if (q === 1) return rule[0];
-      if (q === 2) return rule[1];
-      return rule[2];
+      return q === 1 ? rule[0] : q === 2 ? rule[1] : rule[2];
     }
 
     function renderAceites(list){
@@ -130,7 +127,7 @@ p
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="aceite_price${i}"><strong>Precio:</strong> ${formatGs(aceitePrices[i][0])} c/u <span class="discount" id="aceite_disc${i}">con descuento</span></p>
+          <p><strong>Precio:</strong> <span id="aceite_unit${i}">${calcPrice(1, aceitePrices[i]).toLocaleString()}</span> Gs c/u <span class="discount" id="aceite_disc${i}"></span></p>
           <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
           <p id="aceite_total${i}"></p>
           <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
@@ -145,8 +142,9 @@ p
     function updAceite(i){
       const q = +document.getElementById(`aceite_qty${i}`).value;
       const unit = calcPrice(q, aceitePrices[i]);
-      document.getElementById(`aceite_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u <span class="discount" id="aceite_disc${i}">${q>=2?'con descuento':''}</span>`;
-      document.getElementById(`aceite_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
+      document.getElementById(`aceite_unit${i}`).textContent = unit.toLocaleString();
+      document.getElementById(`aceite_disc${i}`).textContent = q>=2 ? ' con descuento' : '';
+      document.getElementById(`aceite_total${i}`).textContent = `Total: ${(q * unit).toLocaleString()} Gs`;
     }
 
     function sendAceite(i){
@@ -156,15 +154,13 @@ p
       const unit = calcPrice(q, aceitePrices[i]);
       const total = q * unit;
 
-      const msg = `🌿 Pedido OlivaZo Store\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-
+      const msg = `🌿 Pedido OlivaZo Store\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${unit.toLocaleString()} Gs\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
       const enc = encodeURIComponent(msg);
       if (phone.length >= 8){
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
         window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
       }
-      const msgAdmin = `📦 Nuevo pedido recibido:\n${msg}`;
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgAdmin)}`,"_blank");
+      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
     }
 
     function render(list, id, rule){
@@ -176,7 +172,7 @@ p
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(rule[0])} c/u <span class="discount" id="${id}_disc${i}">${q>=2?'con descuento':''}</span></p>
+          <p><strong>Precio:</strong> <span id="${id}_unit${i}">${calcPrice(1, rule).toLocaleString()}</span> Gs c/u <span class="discount" id="${id}_disc${i}"></span></p>
           <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
           <p id="${id}_total${i}"></p>
           <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
@@ -191,8 +187,9 @@ p
     function upd(i, id, rule){
       const q = +document.getElementById(`${id}_qty${i}`).value;
       const unit = calcPrice(q, rule);
-      document.getElementById(`${id}_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u <span class="discount" id="${id}_disc${i}">${q>=2?'con descuento':''}</span>`;
-      document.getElementById(`${id}_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
+      document.getElementById(`${id}_unit${i}`).textContent = unit.toLocaleString();
+      document.getElementById(`${id}_disc${i}`).textContent = q>=2 ? ' con descuento' : '';
+      document.getElementById(`${id}_total${i}`).textContent = `Total: ${(q * unit).toLocaleString()} Gs`;
     }
 
     function send(i, id, rule){
@@ -203,15 +200,13 @@ p
       const unit = calcPrice(q, rule);
       const total = q * unit;
 
-      const msg = `🌿 Pedido OlivaZo-Py Mayorista\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-
+      const msg = `🌿 Pedido OlivaZo-Py Mayorista\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${unit.toLocaleString()} Gs\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
       const enc = encodeURIComponent(msg);
       if (phone.length >= 8){
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
         window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
       }
-      const msgAdmin = `📦 Nuevo pedido recibido:\n${msg}`;
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgAdmin)}`,"_blank");
+      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
     }
 
     renderAceites(aceites);
