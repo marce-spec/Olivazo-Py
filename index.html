@@ -1,60 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- SEO & Open Graph -->
+  <meta charset="UTF-8">
   <title>OlivaZo-Py - Aceites de Oliva, Suplementos y Cosmética Natural</title>
   <meta name="description" content="Comprá aceite de oliva virgen, suplementos deportivos, cosmética natural y más. Envíos a todo Paraguay.">
-  <meta name="keywords" content="aceite oliva, suplementos gym, cosmética natural, aceitunas, snacks saludables">
-  <meta name="author" content="Marcelo Benítez Noguera">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Facebook / Instagram -->
-  <meta property="og:title" content="OlivaZo-Py - Tienda Natural">
-  <meta property="og:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=60">
-  <meta property="og:url" content="https://olivazopy.com">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="OlivaZo-Py - Tienda Natural">
-  <meta name="twitter:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=60">
-
-  <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;background:#000}
-
+    html,body{height:100%;font-family:'Poppins',sans-serif;color:#fff;background:#000;overflow-x:hidden}
     .bg-slides{position:fixed;inset:0;z-index:-2;background-size:cover;background-position:center;background-repeat:no-repeat;animation:fade 16s infinite;opacity:0}
     .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
     .bg-slides:nth-child(2){background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80');animation-delay:4s}
     .bg-slides:nth-child(3){background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80');animation-delay:8s}
     .bg-slides:nth-child(4){background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80');animation-delay:12s}
     @keyframes fade{0%,20%{opacity:1}25%,95%{opacity:0}100%{opacity:0}}
-
     body::after{content:'';position:fixed;inset:0;background:var(--bg-overlay);z-index:-1}
-
     .header-top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
-    .logo{font-size:26px;font-weight:600;display:flex;align-items:center;gap:8px}
-    .logo::before{content:"🌿";font-size:30px}
+    .logo{font-size:26px;font-weight:600}
+    .logo::before{content:"🌿";margin-right:6px}
     .icon-set{display:flex;gap:12px}
     .icon-header{width:30px;height:30px;filter:invert(1);transition:transform .2s}
     .icon-header:hover{transform:scale(1.15)}
-
     .gallery-title{text-align:center;margin:50px 0 20px;font-size:28px;font-weight:600}
     .gallery{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;padding:0 20px 60px}
-    .product{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:20px;width:100%;max-width:380px;backdrop-filter:blur(8px);transition:.3s}
+    .product{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:20px;width:100%;max-width:380px;backdrop-filter:blur(8px)}
     .product:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,.4)}
     .product img{width:100%;border-radius:8px;margin-bottom:12px}
-    .discount{color:#8aff8a}
     label{font-size:14px;margin-top:10px}
     input[type=number],input[type=text]{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:4px;color:#111}
-    button{margin-top:12px;padding:10px 18px;background:var(--verde);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:6px}
+    button{margin-top:12px;padding:10px 18px;background:var(--verde);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600}
     button:hover{background:var(--verde-osc)}
   </style>
 </head>
@@ -71,77 +47,47 @@
     </div>
   </header>
 
+  <!-- 1. Galería con TUS 3 fotos propias -->
   <h2 class="gallery-title">Aceites de Oliva</h2>
-  <!-- GALERÍA DE ACEITE DE OLIVA – imágenes propias -->
-<section class="gallery">
-  <div class="product">
-    <img src="img.aceite/Negrolin.jpeg" alt="Aceite Negrolin">
-    <h3>Aceite Virgen Extra – Negrolin</h3>
-    <p>Garrafa 2 L – envase económico</p>
-    <p><strong>Precio:</strong> <span id="negrolin_unit">100.000</span> Gs c/u</p>
-    <label>Cantidad: <input type="number" id="negrolin_qty" value="1" min="1"></label>
-    <p id="negrolin_total"></p>
-    <label>Tu nombre: <input type="text" id="negrolin_name" placeholder="Ej: Juan"></label>
-    <label>Tu WhatsApp: <input type="text" id="negrolin_phone" placeholder="0981…"></label>
-    <button onclick="sendNegrolin()">🛒 Hacer pedido</button>
-  </div>
+  <section class="gallery">
+    <div class="product">
+      <img src="img_aceite/Negrolin.jpeg" alt="Aceite Negrolin">
+      <h3>Aceite Virgen Extra – Negrolin</h3>
+      <p>Garrafa 2 L – envase económico</p>
+      <p><strong>Precio:</strong> <span id="negrolin_unit">100.000</span> Gs c/u</p>
+      <label>Cantidad: <input type="number" id="negrolin_qty" value="1" min="1"></label>
+      <p id="negrolin_total"></p>
+      <label>Tu nombre: <input type="text" id="negrolin_name" placeholder="Ej: Juan"></label>
+      <label>Tu WhatsApp: <input type="text" id="negrolin_phone" placeholder="0981…"></label>
+      <button onclick="sendNegrolin()">🛒 Hacer pedido</button>
+    </div>
 
-  <div class="product">
-    <img src="img.aceite/italiano.jpeg" alt="Aceite Italiano">
-    <h3>Aceite Virgen Extra – Italiano</h3>
-    <p>Botella 500 ml vidrio transparente</p>
-    <p><strong>Precio:</strong> <span id="italiano_unit">120.000</span> Gs c/u</p>
-    <label>Cantidad: <input type="number" id="italiano_qty" value="1" min="1"></label>
-    <p id="italiano_total"></p>
-    <label>Tu nombre: <input type="text" id="italiano_name" placeholder="Ej: Juan"></label>
-    <label>Tu WhatsApp: <input type="text" id="italiano_phone" placeholder="0981…"></label>
-    <button onclick="sendItaliano()">🛒 Hacer pedido</button>
-  </div>
+    <div class="product">
+      <img src="img_aceite/italiano.jpeg" alt="Aceite Italiano">
+      <h3>Aceite Virgen Extra – Italiano</h3>
+      <p>Botella 500 ml vidrio transparente</p>
+      <p><strong>Precio:</strong> <span id="italiano_unit">120.000</span> Gs c/u</p>
+      <label>Cantidad: <input type="number" id="italiano_qty" value="1" min="1"></label>
+      <p id="italiano_total"></p>
+      <label>Tu nombre: <input type="text" id="italiano_name" placeholder="Ej: Juan"></label>
+      <label>Tu WhatsApp: <input type="text" id="italiano_phone" placeholder="0981…"></label>
+      <button onclick="sendItaliano()">🛒 Hacer pedido</button>
+    </div>
 
-  <div class="product">
-    <img src="img.aceite/verdugo.jpeg" alt="Aceite Verdugo">
-    <h3>Aceite Virgen Extra – Verdugo</h3>
-    <p>Frasco Pet 1 L descartable</p>
-    <p><strong>Precio:</strong> <span id="verdugo_unit">115.000</span> Gs c/u</p>
-    <label>Cantidad: <input type="number" id="verdugo_qty" value="1" min="1"></label>
-    <p id="verdugo_total"></p>
-    <label>Tu nombre: <input type="text" id="verdugo_name" placeholder="Ej: Juan"></label>
-    <label>Tu WhatsApp: <input type="text" id="verdugo_phone" placeholder="0981…"></label>
-    <button onclick="sendVerdugo()">🛒 Hacer pedido</button>
-  </div>
-</section>
+    <div class="product">
+      <img src="img_aceite/verdugo.jpeg" alt="Aceite Verdugo">
+      <h3>Aceite Virgen Extra – Verdugo</h3>
+      <p>Frasco Pet 1 L descartable</p>
+      <p><strong>Precio:</strong> <span id="verdugo_unit">115.000</span> Gs c/u</p>
+      <label>Cantidad: <input type="number" id="verdugo_qty" value="1" min="1"></label>
+      <p id="verdugo_total"></p>
+      <label>Tu nombre: <input type="text" id="verdugo_name" placeholder="Ej: Juan"></label>
+      <label>Tu WhatsApp: <input type="text" id="verdugo_phone" placeholder="0981…"></label>
+      <button onclick="sendVerdugo()">🛒 Hacer pedido</button>
+    </div>
+  </section>
 
-<script>
-/* Funciones para cada producto */
-function updPrecio(campoUnit, campoQty, campoTotal){
-  const q = +document.getElementById(campoQty).value;
-  const base = parseInt(document.getElementById(campoUnit).textContent.replace(/\D/g,''));
-  document.getElementById(campoTotal).textContent = `Total: ${(q * base).toLocaleString()} Gs`;
-}
-function enviar(producto, campoQty, campoName, campoPhone){
-  const q = +document.getElementById(campoQty).value;
-  const name = document.getElementById(campoName).value || "Sin nombre";
-  const phone = document.getElementById(campoPhone).value.trim();
-  const base = parseInt(document.getElementById(producto+"_unit").textContent.replace(/\D/g,''));
-  const total = q * base;
-  const msg = `🌿 Pedido OlivaZo-Py\nProducto: ${producto}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nCliente: ${name}\nContacto: ${phone}`;
-  if(phone.length >= 8){
-    const dest = phone.startsWith("0") ? "595"+phone.slice(1) : phone;
-    window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msg)}`, "_blank");
-  }
-  window.open(`https://wa.me/595983559813?text=${encodeURIComponent("📦 Nuevo pedido:\n"+msg)}`, "_blank");
-}
-
-/* Listeners y llamadas iniciales */
-["negrolin","italiano","verdugo"].forEach(p=>{
-  document.getElementById(p+"_qty").addEventListener("input", ()=>updPrecio(p+"_unit", p+"_qty", p+"_total"));
-  updPrecio(p+"_unit", p+"_qty", p+"_total");
-});
-function sendNegrolin(){ enviar("Negrolin","negrolin_qty","negrolin_name","negrolin_phone"); }
-function sendItaliano(){ enviar("Italiano","italiano_qty","italiano_name","italiano_phone"); }
-function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_phone"); }
-</script>
-
+  <!-- 2. Contenedores para las galerías dinámicas -->
   <h2 class="gallery-title">Suplementos & Gym</h2>
   <div class="gallery" id="galleryGym"></div>
 
@@ -151,6 +97,7 @@ function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_p
   <h2 class="gallery-title">Cosmética Natural</h2>
   <div class="gallery" id="galleryCosmetica"></div>
 
+  <!-- 3. Script que llena los contenedores dinámicos -->
   <script>
     const formatGs = n => "Gs. " + n.toLocaleString();
     const aceitePrices = [[100000, 90000, 80000], [120000, 110000, 100000], [115000, 110000, 100000]];
@@ -161,77 +108,28 @@ function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_p
       {name:"Aceite Virgen Extra 500 ml (vidrio)",desc:"Botella transparente sin etiqueta",image:"https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceite Virgen Extra 1 L (pet)",desc:"Pet descartable sin marca",image:"https://images.unsplash.com/photo-1605651531144-51381895e23d?auto=format&fit=crop&w=800&q=60"}
     ];
-
     const gym = [
       {name:"Proteína Whey 1 kg",desc:"Sabor vainilla",image:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=800&q=60"},
       {name:"BCAA 300 g",desc:"Recuperación muscular",image:"https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=800&q=60"},
       {name:"Creatina 250 g",desc:"Fuerza y volumen",image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=60"},
       {name:"Shaker OlivaZo",desc:"700 ml con agitador",image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=60"}
     ];
-
     const snacks = [
-      {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Verdes Curadas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1602256333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
-      {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
+      {name:"Aceitunas Rellenas",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
+      {name:"Mix Snack",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
     ];
-
     const cosmeticos = [
-      {name:"Crema Facial Hidratante de Oliva",desc:"Pote 50 ml – piel seca",image:"https://images.unsplash.com/photo-1570194065650-d99fb4a38b8e?auto=format&fit=crop&w=800&q=60"},
-      {name:"Jabón Artesanal 100 % Oliva",desc:"Barra 100 g – sin perfume",image:"https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=800&q=60"},
-      {name:"Bálsamo Labial Oliva & Miel",desc:"Stick 15 ml",image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceite Corporal de Oliva Virgen",desc:"Frasco 100 ml",image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=60"}
+      {name:"Crema Facial Hidratante",desc:"Pote 50 ml",image:"https://images.unsplash.com/photo-1570194065650-d99fb4a38b8e?auto=format&fit=crop&w=800&q=60"},
+      {name:"Jabón Artesanal",desc:"Barra 100 g",image:"https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=800&q=60"},
+      {name:"Bálsamo Labial",desc:"Stick 15 ml",image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceite Corporal",desc:"Frasco 100 ml",image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=60"}
     ];
 
     function calcPrice(q, rule){
       return q === 1 ? rule[0] : q === 2 ? rule[1] : rule[2];
     }
-
-    function renderAceites(list){
-      const g = document.getElementById('galleryAceites');
-      list.forEach((p, i) => {
-        const d = document.createElement("div");
-        d.className = "product";
-        d.innerHTML = `
-          <img src="${p.image}" alt="${p.name}">
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-          <p><strong>Precio:</strong> <span id="aceite_unit${i}">${calcPrice(1, aceitePrices[i]).toLocaleString()}</span> Gs c/u <span class="discount" id="aceite_disc${i}"></span></p>
-          <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
-          <p id="aceite_total${i}"></p>
-          <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
-          <label>Tu WhatsApp: <input type="text" id="aceite_phone${i}" placeholder="0981…"></label>
-          <button onclick="sendAceite(${i})">🛒 Hacer pedido</button>`;
-        g.appendChild(d);
-        document.getElementById(`aceite_qty${i}`).addEventListener("input", () => updAceite(i));
-        updAceite(i);
-      });
-    }
-
-    function updAceite(i){
-      const q = +document.getElementById(`aceite_qty${i}`).value;
-      const unit = calcPrice(q, aceitePrices[i]);
-      document.getElementById(`aceite_unit${i}`).textContent = unit.toLocaleString();
-      document.getElementById(`aceite_disc${i}`).textContent = q>=2 ? ' con descuento' : '';
-      document.getElementById(`aceite_total${i}`).textContent = `Total: ${(q * unit).toLocaleString()} Gs`;
-    }
-
-    function sendAceite(i){
-      const q = +document.getElementById(`aceite_qty${i}`).value;
-      const name = document.getElementById(`aceite_name${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`aceite_phone${i}`).value.trim();
-      const unit = calcPrice(q, aceitePrices[i]);
-      const total = q * unit;
-
-      const msg = `🌿 Pedido OlivaZo Store\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${unit.toLocaleString()} Gs\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
-      const enc = encodeURIComponent(msg);
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
-      }
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
-    }
-
     function render(list, id, rule){
       const g = document.getElementById(id);
       list.forEach((p, i) => {
@@ -241,7 +139,7 @@ function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_p
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p><strong>Precio:</strong> <span id="${id}_unit${i}">${calcPrice(1, rule).toLocaleString()}</span> Gs c/u <span class="discount" id="${id}_disc${i}"></span></p>
+          <p><strong>Precio:</strong> <span id="${id}_unit${i}">${calcPrice(1, rule).toLocaleString()}</span> Gs c/u</p>
           <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
           <p id="${id}_total${i}"></p>
           <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
@@ -252,15 +150,12 @@ function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_p
         upd(i, id, rule);
       });
     }
-
     function upd(i, id, rule){
       const q = +document.getElementById(`${id}_qty${i}`).value;
       const unit = calcPrice(q, rule);
       document.getElementById(`${id}_unit${i}`).textContent = unit.toLocaleString();
-      document.getElementById(`${id}_disc${i}`).textContent = q>=2 ? ' con descuento' : '';
       document.getElementById(`${id}_total${i}`).textContent = `Total: ${(q * unit).toLocaleString()} Gs`;
     }
-
     function send(i, id, rule){
       const list = window[id.replace('gallery','')];
       const q = +document.getElementById(`${id}_qty${i}`).value;
@@ -268,23 +163,22 @@ function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_p
       const phone = document.getElementById(`${id}_phone${i}`).value.trim();
       const unit = calcPrice(q, rule);
       const total = q * unit;
-
-      const msg = `🌿 Pedido OlivaZo-Py Mayorista\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${unit.toLocaleString()} Gs\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
+      const msg = `🌿 Pedido OlivaZo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
       const enc = encodeURIComponent(msg);
       if (phone.length >= 8){
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
+        window.open(`https://wa.me/${dest}?text=${enc}`, "_blank");
       }
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
+      window.open(`https://wa.me/595983559813?text=${encodeURIComponent("📦 Nuevo pedido:\n" + msg)}`, "_blank");
     }
 
-    renderAceites(aceites);
+    /* scripts de productos dinámicos */
     render(gym, 'galleryGym', defaultRules);
     render(snacks, 'gallerySnacks', defaultRules);
     render(cosmeticos, 'galleryCosmetica', defaultRules);
   </script>
 
-  <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
+  <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);margin-top:40px">
     © 2025 OlivaZo-Py - Todos los derechos reservados · Marcelo Benítez Noguera | HTML5
   </footer>
 </body>
