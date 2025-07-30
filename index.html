@@ -180,7 +180,7 @@
       const unit = calcPrice(q, rule);
       const total = q * unit;
 
-      const msg = `🌿 Pedido OlivaZo-Py Mayorista\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
+      const msg = `🌿 Pedido OlivaZo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
       const enc = encodeURIComponent(msg);
       if (phone.length >= 8){
         const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
