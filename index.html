@@ -107,27 +107,26 @@
     function calcPrice(q, rule){
       return q === 1 ? rule[0] : q === 2 ? rule[1] : rule[2];
     }
+function sendAceite(i){
+  const q    = +document.getElementById(`aceite_qty${i}`).value;
+  const name = document.getElementById(`aceite_name${i}`).value.trim();
+  const phone= document.getElementById(`aceite_phone${i}`).value.trim();
+  if(!name || !phone || phone.length < 8){
+    alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
+    return;
+  }
+  const unit  = calcPrice(q, aceitePrices[i]);
+  const total = q * unit;
 
-    function renderAceites(list){
-      const g = document.getElementById('galleryAceites');
-      list.forEach((p, i) => {
-        const d = document.createElement("div");
-        d.className = "product";
-        d.innerHTML = `
-          <img src="${p.image}" alt="${p.name}">
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-          <p><strong>Precio:</strong> <span id="aceite_unit${i}">${calcPrice(1, aceitePrices[i]).toLocaleString()}</span> Gs c/u <span class="discount" id="aceite_disc${i}"></span></p>
-          <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
-          <p id="aceite_total${i}"></p>
-          <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
-          <label>Tu WhatsApp: <input type="text" id="aceite_phone${i}" placeholder="0981…"></label>
-          <button onclick="sendAceite(${i})">🛒 Hacer pedido</button>`;
-        g.appendChild(d);
-        document.getElementById(`aceite_qty${i}`).addEventListener("input", () => updAceite(i));
-        updAceite(i);
-      });
-    }
+  // mensaje al cliente
+  const msgCliente = `🌿 Pedido OlivaZo-Py\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
+  // mensaje a vos
+  const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo-Py\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
+
+  const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+  window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
+  window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
+}
 
     function updAceite(i){
       const q = +document.getElementById(`aceite_qty${i}`).value;
@@ -135,25 +134,30 @@
       document.getElementById(`aceite_unit${i}`).textContent = unit.toLocaleString();
       document.getElementById(`aceite_disc${i}`).textContent = q>=2 ? ' con descuento' : '';
       document.getElementById(`aceite_total${i}`).textContent = `Total: ${(q * unit).toLocaleString()} Gs`;
-    }
+    function send(i, id, rule){
+  const list = window[id.replace('gallery','').replace('Gym','gym').replace('Snacks','snacks').replace('Cosmetica','cosmeticos')];
+  const q    = +document.getElementById(`${id}_qty${i}`).value;
+  const name = document.getElementById(`${id}_name${i}`).value.trim();
+  const phone= document.getElementById(`${id}_phone${i}`).value.trim();
+  if(!name || !phone || phone.length < 8){
+    alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
+    return;
+  }
+      
+  const unit  = calcPrice(q, rule);
+  const total = q * unit;
 
-    function sendAceite(i){
-      const q    = +document.getElementById(`aceite_qty${i}`).value;
-      const name = document.getElementById(`aceite_name${i}`).value.trim();
-      const phone= document.getElementById(`aceite_phone${i}`).value.trim();
-      if(!name || !phone || phone.length < 8){
-        alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
-        return;
-      }
-      const unit  = calcPrice(q, aceitePrices[i]);
-      const total = q * unit;
+  // mensaje al cliente
+  const msgCliente = `🌿 Pedido OlivaZo-Py\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
+  // mensaje a vos
+  const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo-Py\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
 
-      const msgCliente = `🌿 Pedido OlivaZo Store\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
-      const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo Store\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
+  const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+  window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
+  window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
+}
 
-      const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-      window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
+    msgMarce)}`, "_blank");
     }
 
     function render(list, id, rule){
