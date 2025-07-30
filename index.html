@@ -80,7 +80,7 @@
 
     const snacks = [
       {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1602256333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
       {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
     ];
@@ -105,7 +105,7 @@
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="aceite_price${i}"><strong>Precio:</strong> ${formatGs(aceitePrices[i][0])} c/u <span class="discount">(con descuento a partir de 2 und)</span></p>
+          <p id="aceite_price${i}"><strong>Precio:</strong> ${formatGs(aceitePrices[i][0])} c/u <span id="aceite_discount${i}" style="display:none;" class="discount">Con Descuento</span></p>
           <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
           <p id="aceite_total${i}"></p>
           <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
@@ -120,7 +120,9 @@
     function updAceite(i){
       const q = +document.getElementById(`aceite_qty${i}`).value;
       const unit = calcPrice(q, aceitePrices[i]);
-      document.getElementById(`aceite_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u <span class="discount">(con descuento a partir de 2 und)</span>`;
+      const discountSpan = document.getElementById(`aceite_discount${i}`);
+      discountSpan.style.display = q >= 2 ? "inline" : "none";
+      document.getElementById(`aceite_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u ${discountSpan.outerHTML}`;
       document.getElementById(`aceite_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
     }
 
@@ -149,7 +151,7 @@
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(rule[0])} c/u <span class="discount">(con descuento a partir de 2 und)</span></p>
+          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(rule[0])} c/u <span id="${id}_discount${i}" style="display:none;" class="discount">Con Descuento</span></p>
           <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
           <p id="${id}_total${i}"></p>
           <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
@@ -164,7 +166,9 @@
     function upd(i, id, rule){
       const q = +document.getElementById(`${id}_qty${i}`).value;
       const unit = calcPrice(q, rule);
-      document.getElementById(`${id}_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u <span class="discount">(con descuento a partir de 2 und)</span>`;
+      const discountSpan = document.getElementById(`${id}_discount${i}`);
+      discountSpan.style.display = q >= 2 ? "inline" : "none";
+      document.getElementById(`${id}_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u ${discountSpan.outerHTML}`;
       document.getElementById(`${id}_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
     }
 
