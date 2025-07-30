@@ -72,7 +72,75 @@
   </header>
 
   <h2 class="gallery-title">Aceites de Oliva</h2>
-  <div class="gallery" id="galleryAceites"></div>
+  <!-- GALERÍA DE ACEITE DE OLIVA – imágenes propias -->
+<section class="gallery">
+  <div class="product">
+    <img src="img.aceite/Negrolin.jpeg" alt="Aceite Negrolin">
+    <h3>Aceite Virgen Extra – Negrolin</h3>
+    <p>Garrafa 2 L – envase económico</p>
+    <p><strong>Precio:</strong> <span id="negrolin_unit">100.000</span> Gs c/u</p>
+    <label>Cantidad: <input type="number" id="negrolin_qty" value="1" min="1"></label>
+    <p id="negrolin_total"></p>
+    <label>Tu nombre: <input type="text" id="negrolin_name" placeholder="Ej: Juan"></label>
+    <label>Tu WhatsApp: <input type="text" id="negrolin_phone" placeholder="0981…"></label>
+    <button onclick="sendNegrolin()">🛒 Hacer pedido</button>
+  </div>
+
+  <div class="product">
+    <img src="img.aceite/italiano.jpeg" alt="Aceite Italiano">
+    <h3>Aceite Virgen Extra – Italiano</h3>
+    <p>Botella 500 ml vidrio transparente</p>
+    <p><strong>Precio:</strong> <span id="italiano_unit">120.000</span> Gs c/u</p>
+    <label>Cantidad: <input type="number" id="italiano_qty" value="1" min="1"></label>
+    <p id="italiano_total"></p>
+    <label>Tu nombre: <input type="text" id="italiano_name" placeholder="Ej: Juan"></label>
+    <label>Tu WhatsApp: <input type="text" id="italiano_phone" placeholder="0981…"></label>
+    <button onclick="sendItaliano()">🛒 Hacer pedido</button>
+  </div>
+
+  <div class="product">
+    <img src="img.aceite/verdugo.jpeg" alt="Aceite Verdugo">
+    <h3>Aceite Virgen Extra – Verdugo</h3>
+    <p>Frasco Pet 1 L descartable</p>
+    <p><strong>Precio:</strong> <span id="verdugo_unit">115.000</span> Gs c/u</p>
+    <label>Cantidad: <input type="number" id="verdugo_qty" value="1" min="1"></label>
+    <p id="verdugo_total"></p>
+    <label>Tu nombre: <input type="text" id="verdugo_name" placeholder="Ej: Juan"></label>
+    <label>Tu WhatsApp: <input type="text" id="verdugo_phone" placeholder="0981…"></label>
+    <button onclick="sendVerdugo()">🛒 Hacer pedido</button>
+  </div>
+</section>
+
+<script>
+/* Funciones para cada producto */
+function updPrecio(campoUnit, campoQty, campoTotal){
+  const q = +document.getElementById(campoQty).value;
+  const base = parseInt(document.getElementById(campoUnit).textContent.replace(/\D/g,''));
+  document.getElementById(campoTotal).textContent = `Total: ${(q * base).toLocaleString()} Gs`;
+}
+function enviar(producto, campoQty, campoName, campoPhone){
+  const q = +document.getElementById(campoQty).value;
+  const name = document.getElementById(campoName).value || "Sin nombre";
+  const phone = document.getElementById(campoPhone).value.trim();
+  const base = parseInt(document.getElementById(producto+"_unit").textContent.replace(/\D/g,''));
+  const total = q * base;
+  const msg = `🌿 Pedido OlivaZo-Py\nProducto: ${producto}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nCliente: ${name}\nContacto: ${phone}`;
+  if(phone.length >= 8){
+    const dest = phone.startsWith("0") ? "595"+phone.slice(1) : phone;
+    window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+  window.open(`https://wa.me/595983559813?text=${encodeURIComponent("📦 Nuevo pedido:\n"+msg)}`, "_blank");
+}
+
+/* Listeners y llamadas iniciales */
+["negrolin","italiano","verdugo"].forEach(p=>{
+  document.getElementById(p+"_qty").addEventListener("input", ()=>updPrecio(p+"_unit", p+"_qty", p+"_total"));
+  updPrecio(p+"_unit", p+"_qty", p+"_total");
+});
+function sendNegrolin(){ enviar("Negrolin","negrolin_qty","negrolin_name","negrolin_phone"); }
+function sendItaliano(){ enviar("Italiano","italiano_qty","italiano_name","italiano_phone"); }
+function sendVerdugo(){ enviar("Verdugo","verdugo_qty","verdugo_name","verdugo_phone"); }
+</script>
 
   <h2 class="gallery-title">Suplementos & Gym</h2>
   <div class="gallery" id="galleryGym"></div>
