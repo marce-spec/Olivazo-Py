@@ -1,40 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <!-- SEO & Open Graph -->
   <title>OlivaZo-Py - Aceites de Oliva, Suplementos y Cosmética Natural</title>
   <meta name="description" content="Comprá aceite de oliva virgen, suplementos deportivos, cosmética natural y más. Envíos a todo Paraguay.">
   <meta name="keywords" content="aceite oliva, suplementos gym, cosmética natural, aceitunas, snacks saludables">
   <meta name="author" content="Marcelo Benítez Noguera">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Facebook / Instagram -->
   <meta property="og:title" content="OlivaZo-Py - Tienda Natural">
   <meta property="og:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=60">
   <meta property="og:url" content="https://olivazopy.com">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OlivaZo-Py - Tienda Natural">
   <meta name="twitter:description" content="Aceites de oliva, suplementos y cosmética natural en Paraguay.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=60">
-  <meta name="google-site-verification" content="bOTD5lZwnXLBZYtpactTnrRUtpJEccSbg2Pszg72_q4">
+
+  <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{--verde:#4caf50;--verde-osc:#388e3c;--bg-overlay:rgba(0,0,0,.45)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;background:#000}
+
     .bg-slides{position:fixed;inset:0;z-index:-2;background-size:cover;background-position:center;background-repeat:no-repeat;animation:fade 16s infinite;opacity:0}
     .bg-slides:nth-child(1){background:url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1350&q=80');animation-delay:0s}
     .bg-slides:nth-child(2){background:url('https://images.unsplash.com/photo-1615485588313-87b1f8c7344f?auto=format&fit=crop&w=1350&q=80');animation-delay:4s}
     .bg-slides:nth-child(3){background:url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1350&q=80');animation-delay:8s}
     .bg-slides:nth-child(4){background:url('https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=1350&q=80');animation-delay:12s}
     @keyframes fade{0%,20%{opacity:1}25%,95%{opacity:0}100%{opacity:0}}
+
     body::after{content:'';position:fixed;inset:0;background:var(--bg-overlay);z-index:-1}
+
     .header-top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
     .logo{font-size:26px;font-weight:600;display:flex;align-items:center;gap:8px}
     .logo::before{content:"🌿";font-size:30px}
     .icon-set{display:flex;gap:12px}
     .icon-header{width:30px;height:30px;filter:invert(1);transition:transform .2s}
     .icon-header:hover{transform:scale(1.15)}
+
     .gallery-title{text-align:center;margin:50px 0 20px;font-size:28px;font-weight:600}
     .gallery{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;padding:0 20px 60px}
     .product{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:20px;width:100%;max-width:380px;backdrop-filter:blur(8px);transition:.3s}
@@ -92,7 +103,7 @@
 
     const snacks = [
       {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1602256333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
       {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
       {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
     ];
@@ -107,26 +118,27 @@
     function calcPrice(q, rule){
       return q === 1 ? rule[0] : q === 2 ? rule[1] : rule[2];
     }
-function sendAceite(i){
-  const q    = +document.getElementById(`aceite_qty${i}`).value;
-  const name = document.getElementById(`aceite_name${i}`).value.trim();
-  const phone= document.getElementById(`aceite_phone${i}`).value.trim();
-  if(!name || !phone || phone.length < 8){
-    alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
-    return;
-  }
-  const unit  = calcPrice(q, aceitePrices[i]);
-  const total = q * unit;
 
-  // mensaje al cliente
-  const msgCliente = `🌿 Pedido OlivaZo-Py\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
-  // mensaje a vos
-  const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo-Py\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
-
-  const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-  window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
-  window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
-}
+    function renderAceites(list){
+      const g = document.getElementById('galleryAceites');
+      list.forEach((p, i) => {
+        const d = document.createElement("div");
+        d.className = "product";
+        d.innerHTML = `
+          <img src="${p.image}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <p><strong>Precio:</strong> <span id="aceite_unit${i}">${calcPrice(1, aceitePrices[i]).toLocaleString()}</span> Gs c/u <span class="discount" id="aceite_disc${i}"></span></p>
+          <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
+          <p id="aceite_total${i}"></p>
+          <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
+          <label>Tu WhatsApp: <input type="text" id="aceite_phone${i}" placeholder="0981…"></label>
+          <button onclick="sendAceite(${i})">🛒 Hacer pedido</button>`;
+        g.appendChild(d);
+        document.getElementById(`aceite_qty${i}`).addEventListener("input", () => updAceite(i));
+        updAceite(i);
+      });
+    }
 
     function updAceite(i){
       const q = +document.getElementById(`aceite_qty${i}`).value;
@@ -134,30 +146,22 @@ function sendAceite(i){
       document.getElementById(`aceite_unit${i}`).textContent = unit.toLocaleString();
       document.getElementById(`aceite_disc${i}`).textContent = q>=2 ? ' con descuento' : '';
       document.getElementById(`aceite_total${i}`).textContent = `Total: ${(q * unit).toLocaleString()} Gs`;
-    function send(i, id, rule){
-  const list = window[id.replace('gallery','').replace('Gym','gym').replace('Snacks','snacks').replace('Cosmetica','cosmeticos')];
-  const q    = +document.getElementById(`${id}_qty${i}`).value;
-  const name = document.getElementById(`${id}_name${i}`).value.trim();
-  const phone= document.getElementById(`${id}_phone${i}`).value.trim();
-  if(!name || !phone || phone.length < 8){
-    alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
-    return;
-  }
-      
-  const unit  = calcPrice(q, rule);
-  const total = q * unit;
+    }
 
-  // mensaje al cliente
-  const msgCliente = `🌿 Pedido OlivaZo-Py\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
-  // mensaje a vos
-  const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo-Py\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
+    function sendAceite(i){
+      const q = +document.getElementById(`aceite_qty${i}`).value;
+      const name = document.getElementById(`aceite_name${i}`).value || "Sin nombre";
+      const phone = document.getElementById(`aceite_phone${i}`).value.trim();
+      const unit = calcPrice(q, aceitePrices[i]);
+      const total = q * unit;
 
-  const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-  window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
-  window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
-}
-
-    msgMarce)}`, "_blank");
+      const msg = `🌿 Pedido OlivaZo Store\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${unit.toLocaleString()} Gs\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
+      const enc = encodeURIComponent(msg);
+      if (phone.length >= 8){
+        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
+      }
+      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
     }
 
     function render(list, id, rule){
@@ -191,22 +195,19 @@ function sendAceite(i){
 
     function send(i, id, rule){
       const list = window[id.replace('gallery','')];
-      const q    = +document.getElementById(`${id}_qty${i}`).value;
-      const name = document.getElementById(`${id}_name${i}`).value.trim();
-      const phone= document.getElementById(`${id}_phone${i}`).value.trim();
-      if(!name || !phone || phone.length < 8){
-        alert("Por favor ingresá tu nombre y WhatsApp (mín. 8 dígitos).");
-        return;
-      }
-      const unit  = calcPrice(q, rule);
+      const q = +document.getElementById(`${id}_qty${i}`).value;
+      const name = document.getElementById(`${id}_name${i}`).value || "Sin nombre";
+      const phone = document.getElementById(`${id}_phone${i}`).value.trim();
+      const unit = calcPrice(q, rule);
       const total = q * unit;
 
-      const msgCliente = `🌿 Pedido OlivaZo-Py\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nGracias, ${name}!`;
-      const msgMarce   = `📦 Nuevo pedido recibido:\n🌿 Pedido OlivaZo-Py\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
-
-      const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-      window.open(`https://wa.me/${dest}?text=${encodeURIComponent(msgCliente)}`, "_blank");
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msgMarce)}`, "_blank");
+      const msg = `🌿 Pedido OlivaZo-Py Mayorista\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${unit.toLocaleString()} Gs\nTotal: ${total.toLocaleString()} Gs\nContacto: ${phone}`;
+      const enc = encodeURIComponent(msg);
+      if (phone.length >= 8){
+        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
+        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
+      }
+      window.open(`https://wa.me/595983559813?text=${encodeURIComponent('📦 Nuevo pedido recibido:\n' + msg)}`,"_blank");
     }
 
     renderAceites(aceites);
@@ -218,18 +219,5 @@ function sendAceite(i){
   <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
     © 2025 OlivaZo-Py - Todos los derechos reservados · Marcelo Benítez Noguera | HTML5
   </footer>
-
-  <!-- Sección Blog SEO -->
-  <section style="padding:30px 20px;max-width:800px;margin:auto;color:#fff;background:rgba(0,0,0,.4);border-radius:12px;margin-top:40px">
-    <h2 style="text-align:center;margin-bottom:15px">Guía SEO: Aceite de Oliva Virgen en Paraguay</h2>
-    <p><strong>¿Por qué elegir aceite de oliva virgen extra en Paraguay?</strong> Porque es rico en antioxidantes, ayuda al corazón y potencia tu sistema inmunológico. Además, al comprar en OlivaZo-Py recibís envío gratis a Asunción, Ciudad del Este y todo el país en menos de 48 h.</p>
-    <ul>
-      <li>✅ 100 % virgen extra</li>
-      <li>✅ Sin aditivos ni conservantes</li>
-      <li>✅ Precios competitivos: desde 100 000 Gs</li>
-    </ul>
-    <p><strong>¿Creatina o proteína whey?</strong> Ambos suplementos deportivos potencian tu entrenamiento. La creatina mejora la fuerza explosiva, mientras que la proteína whey acelera la recuperación muscular. Consultá nuestras ofertas y hacé tu pedido por WhatsApp.</p>
-    <p><em>Keywords: aceite de oliva virgen Paraguay, creatina precio Asunción, proteína whey envío gratis.</em></p>
-  </section>
 </body>
 </html>
