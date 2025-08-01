@@ -45,143 +45,112 @@
     </div>
   </header>
 
-  <!-- 1. Aceites de Oliva con TUS 3 fotos -->
+  <!-- Aceites de Oliva -->
   <h2 class="gallery-title">Aceites de Oliva</h2>
   <div class="gallery" id="galleryAceites"></div>
 
-  <!-- 2. Resto de galerías dinámicas -->
+  <!-- Suplementos & Gym -->
   <h2 class="gallery-title">Suplementos & Gym</h2>
-  <div class="gallery" id="galleryGym"><!-- Bloque reemplazado en galleryGym -->
-<div class="product">
-  <img src="ptoteina nutrilab 1kg.jpeg" alt="Proteína Nutrilab 1 kg">
-  <h3>Proteína Nutrilab 1 kg</h3>
-  <p>Proteína de suero de alta calidad</p>
-  <p><strong>Precio:</strong> Gs. 150.000 c/u</p>
-  <p class="discount">2 unidades: Gs. 140.000 c/u</p>
-  <p class="discount">3 unidades: Gs. 130.000 c/u</p>
-  <label>Cantidad: <input type="number" value="1" min="1"></label>
-  <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
-  <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
-  <button onclick="send(this)">🛒 Hacer pedido</button>
-</div>
+  <div class="gallery" id="galleryGym">
+    <!-- Proteína Nutrilab -->
+    <div class="product" data-prices="150000,140000,130000">
+      <img src="ptoteina nutrilab 1kg.jpeg" alt="Proteína Nutrilab 1 kg">
+      <h3>Proteína Nutrilab 1 kg</h3>
+      <p>Proteína de suero de alta calidad</p>
+      <p class="unit-price"><strong>Precio:</strong> <span class="price">Gs. 150.000</span> c/u</p>
+      <p class="discount price-discount" style="display:none">Con descuento: <span class="discount-amount"></span> c/u</p>
+      <label>Cantidad: <input type="number" value="1" min="1" max="3"></label>
+      <p class="total"></p>
+      <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
+      <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
+      <button onclick="sendOrder(this)">🛒 Hacer pedido</button>
+    </div>
 
-<div class="product">
-  <img src="whey proteina gourmet 1kl.jpeg" alt="Whey Proteína Gourmet 1 kg">
-  <h3>Whey Proteína Gourmet 1 kg</h3>
-  <p>Sabor gourmet, máxima absorción</p>
-  <p><strong>Precio:</strong> Gs. 130.000 c/u</p>
-  <p class="discount">2 unidades: Gs. 120.000 c/u</p>
-  <p class="discount">3 unidades: Gs. 110.000 c/u</p>
-  <label>Cantidad: <input type="number" value="1" min="1"></label>
-  <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
-  <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
-  <button onclick="send(this)">🛒 Hacer pedido</button>
-</div>
+    <!-- Whey Proteína Gourmet -->
+    <div class="product" data-prices="130000,120000,110000">
+      <img src="whey proteina gourmet 1kl.jpeg" alt="Whey Proteína Gourmet 1 kg">
+      <h3>Whey Proteína Gourmet 1 kg</h3>
+      <p>Sabor gourmet, máxima absorción</p>
+      <p class="unit-price"><strong>Precio:</strong> <span class="price">Gs. 130.000</span> c/u</p>
+      <p class="discount price-discount" style="display:none">Con descuento: <span class="discount-amount"></span> c/u</p>
+      <label>Cantidad: <input type="number" value="1" min="1" max="3"></label>
+      <p class="total"></p>
+      <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
+      <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
+      <button onclick="sendOrder(this)">🛒 Hacer pedido</button>
+    </div>
 
-<div class="product">
-  <img src="creatina mas grow.jpeg" alt="Creatina Más Grow">
-  <h3>Creatina Más Grow</h3>
-  <p>Creatina monohidratada 300 g</p>
-  <p><strong>Precio:</strong> Gs. 130.000 c/u</p>
-  <p class="discount">2 unidades: Gs. 120.000 c/u</p>
-  <p class="discount">3 unidades: Gs. 110.000 c/u</p>
-  <label>Cantidad: <input type="number" value="1" min="1"></label>
-  <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
-  <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
-  <button onclick="send(this)">🛒 Hacer pedido</button>
-</div>
+    <!-- Creatina Más Grow -->
+    <div class="product" data-prices="130000,120000,110000">
+      <img src="creatina mas grow.jpeg" alt="Creatina Más Grow">
+      <h3>Creatina Más Grow</h3>
+      <p>Creatina monohidratada 300 g</p>
+      <p class="unit-price"><strong>Precio:</strong> <span class="price">Gs. 130.000</span> c/u</p>
+      <p class="discount price-discount" style="display:none">Con descuento: <span class="discount-amount"></span> c/u</p>
+      <label>Cantidad: <input type="number" value="1" min="1" max="3"></label>
+      <p class="total"></p>
+      <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
+      <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
+      <button onclick="sendOrder(this)">🛒 Hacer pedido</button>
+    </div>
+  </div>
 
-
+  <!-- Aceitunas & Snacks -->
   <h2 class="gallery-title">Aceitunas & Snacks</h2>
   <div class="gallery" id="gallerySnacks"></div>
 
+  <!-- Cosmética Natural -->
   <h2 class="gallery-title">Cosmética Natural</h2>
   <div class="gallery" id="galleryCosmetica"></div>
 
   <script>
+    /* ---------------- UTILIDADES ---------------- */
     const formatGs = n => "Gs. " + n.toLocaleString();
-    const aceitePrices = [[100000, 90000, 80000],[120000, 110000, 100000],[115000, 110000, 100000]];
-    const defaultRules = [55000, 50000, 45000];
 
-    // --- TUS 3 FOTOS NUEVAS ---
+    /* ---------------- ACEITES ---------------- */
+    const aceitePrices = [[100000,90000,80000],[120000,110000,100000],[115000,110000,100000]];
     const aceites = [
-      {name:"Aceite Virgen Extra – Olive Oil",desc:"Garrafa 2 Litros - Calidad Premium",image:"img_aceite/Negrolin.jpeg"},
-      {name:"Aceite Virgen Extra – Dell Olivo",desc:"Garrafa 2 Litros - Premium Intenso",image:"img_aceite/italiano.jpeg"},
-      {name:"Aceite Virgen Extra – El Gran Juicio",desc:"Garrafa 2 Litros - Golden Line",image:"img_aceite/verdugo.jpeg"}
+      {name:"Aceite Virgen Extra – Olive Oil", desc:"Garrafa 2 Litros - Calidad Premium", image:"img_aceite/Negrolin.jpeg"},
+      {name:"Aceite Virgen Extra – Dell Olivo", desc:"Garrafa 2 Litros - Premium Intenso", image:"img_aceite/italiano.jpeg"},
+      {name:"Aceite Virgen Extra – El Gran Juicio", desc:"Garrafa 2 Litros - Golden Line", image:"img_aceite/verdugo.jpeg"}
     ];
 
-    const gym = [
-      {name:"Proteína Whey 1 kg",desc:"Sabor vainilla",image:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=800&q=60"},
-      {name:"BCAA 300 g",desc:"Recuperación muscular",image:"https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=800&q=60"},
-      {name:"Creatina 250 g",desc:"Fuerza y volumen",image:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=60"},
-      {name:"Shaker OlivaZo",desc:"700 ml con agitador",image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    const snacks = [
-      {name:"Aceitunas Verdes Curadas con Hierbas",desc:"Frasco 250 g",image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Negras en Salmuera",desc:"Envase 250 g",image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceitunas Rellenas de Pimiento",desc:"Frasco 220 g",image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
-      {name:"Mix Snack Aceituna & Almendra",desc:"Bolsa 150 g",image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    const cosmeticos = [
-      {name:"Crema Facial Hidratante de Oliva",desc:"Pote 50 ml – piel seca",image:"https://images.unsplash.com/photo-1570194065650-d99fb4a38b8e?auto=format&fit=crop&w=800&q=60"},
-      {name:"Jabón Artesanal 100 % Oliva",desc:"Barra 100 g – sin perfume",image:"https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=800&q=60"},
-      {name:"Bálsamo Labial Oliva & Miel",desc:"Stick 15 ml",image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=60"},
-      {name:"Aceite Corporal de Oliva Virgen",desc:"Frasco 100 ml",image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=60"}
-    ];
-
-    function calcPrice(q, rule){
-      return q === 1 ? rule[0] : q === 2 ? rule[1] : rule[2];
-    }
-
-    function renderAceites(list){
+    function renderAceites() {
       const g = document.getElementById('galleryAceites');
-      list.forEach((p, i) => {
+      aceites.forEach((p, i) => {
         const d = document.createElement("div");
         d.className = "product";
         d.innerHTML = `
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="aceite_price${i}"><strong>Precio:</strong> ${formatGs(aceitePrices[i][0])} c/u <span id="aceite_discount${i}" style="display:none;" class="discount">Con Descuento</span></p>
-          <label>Cantidad: <input type="number" id="aceite_qty${i}" value="1" min="1"></label>
-          <p id="aceite_total${i}"></p>
-          <label>Tu nombre: <input type="text" id="aceite_name${i}" placeholder="Ej: Juan"></label>
-          <label>Tu WhatsApp: <input type="text" id="aceite_phone${i}" placeholder="0981…"></label>
-          <button onclick="sendAceite(${i})">🛒 Hacer pedido</button>`;
+          <p class="unit-price"><strong>Precio:</strong> <span class="price">${formatGs(aceitePrices[i][0])}</span> c/u</p>
+          <p class="discount price-discount" style="display:none">Con descuento: <span class="discount-amount"></span> c/u</p>
+          <label>Cantidad: <input type="number" value="1" min="1" max="3"></label>
+          <p class="total"></p>
+          <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
+          <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
+          <button onclick="sendOrder(this)">🛒 Hacer pedido</button>`;
         g.appendChild(d);
-        document.getElementById(`aceite_qty${i}`).addEventListener("input", () => updAceite(i));
-        updAceite(i);
       });
     }
 
-    function updAceite(i){
-      const q = +document.getElementById(`aceite_qty${i}`).value;
-      const unit = calcPrice(q, aceitePrices[i]);
-      const discountSpan = document.getElementById(`aceite_discount${i}`);
-      discountSpan.style.display = q >= 2 ? "inline" : "none";
-      document.getElementById(`aceite_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u ${discountSpan.outerHTML}`;
-      document.getElementById(`aceite_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
-    }
+    /* ---------------- OTROS PRODUCTOS ---------------- */
+    const snacks = [
+      {name:"Aceitunas Verdes Curadas con Hierbas", desc:"Frasco 250 g", image:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Negras en Salmuera", desc:"Envase 250 g", image:"https://images.unsplash.com/photo-1600626333540-9d41d3c4330a?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceitunas Rellenas de Pimiento", desc:"Frasco 220 g", image:"https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=800&q=60"},
+      {name:"Mix Snack Aceituna & Almendra", desc:"Bolsa 150 g", image:"https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=800&q=60"}
+    ];
 
-    function sendAceite(i){
-      const q = +document.getElementById(`aceite_qty${i}`).value;
-      const name = document.getElementById(`aceite_name${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`aceite_phone${i}`).value.trim();
-      const unit = calcPrice(q, aceitePrices[i]);
-      const total = q * unit;
+    const cosmeticos = [
+      {name:"Crema Facial Hidratante de Oliva", desc:"Pote 50 ml – piel seca", image:"https://images.unsplash.com/photo-1570194065650-d99fb4a38b8e?auto=format&fit=crop&w=800&q=60"},
+      {name:"Jabón Artesanal 100 % Oliva", desc:"Barra 100 g – sin perfume", image:"https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=800&q=60"},
+      {name:"Bálsamo Labial Oliva & Miel", desc:"Stick 15 ml", image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=60"},
+      {name:"Aceite Corporal de Oliva Virgen", desc:"Frasco 100 ml", image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=60"}
+    ];
 
-      const msg = `🌿 Pedido OlivaZo-Py\nGalería: Aceites de Oliva\nCliente: ${name}\nProducto: ${aceites[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-      const enc = encodeURIComponent(msg);
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
-      }
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent("📦 Nuevo pedido:\n" + msg)}`,"_blank");
-    }
-
-    function render(list, id, rule){
+    function render(list, id, rule) {
       const g = document.getElementById(id);
       list.forEach((p, i) => {
         const d = document.createElement("div");
@@ -190,48 +159,49 @@
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p id="${id}_price${i}"><strong>Precio:</strong> ${formatGs(rule[0])} c/u <span id="${id}_discount${i}" style="display:none;" class="discount">Con Descuento</span></p>
-          <label>Cantidad: <input type="number" id="${id}_qty${i}" value="1" min="1"></label>
-          <p id="${id}_total${i}"></p>
-          <label>Tu nombre: <input type="text" id="${id}_name${i}" placeholder="Ej: Juan"></label>
-          <label>Tu WhatsApp: <input type="text" id="${id}_phone${i}" placeholder="0981…"></label>
-          <button onclick="send(${i},'${id}',${JSON.stringify(rule)})">🛒 Hacer pedido</button>`;
+          <p class="unit-price"><strong>Precio:</strong> <span class="price">${formatGs(rule[0])}</span> c/u</p>
+          <p class="discount price-discount" style="display:none">Con descuento: <span class="discount-amount"></span> c/u</p>
+          <label>Cantidad: <input type="number" value="1" min="1" max="3"></label>
+          <p class="total"></p>
+          <label>Tu nombre: <input type="text" placeholder="Ej: Juan"></label>
+          <label>Tu WhatsApp: <input type="text" placeholder="0981…"></label>
+          <button onclick="sendOrder(this)">🛒 Hacer pedido</button>`;
         g.appendChild(d);
-        document.getElementById(`${id}_qty${i}`).addEventListener("input", () => upd(i, id, rule));
-        upd(i, id, rule);
       });
     }
 
-    function upd(i, id, rule){
-      const q = +document.getElementById(`${id}_qty${i}`).value;
-      const unit = calcPrice(q, rule);
-      const discountSpan = document.getElementById(`${id}_discount${i}`);
-      discountSpan.style.display = q >= 2 ? "inline" : "none";
-      document.getElementById(`${id}_price${i}`).innerHTML = `<strong>Precio:</strong> ${formatGs(unit)} c/u ${discountSpan.outerHTML}`;
-      document.getElementById(`${id}_total${i}`).textContent = `Total: ${formatGs(q * unit)}`;
-    }
-
-    function send(i, id, rule){
-      const list = window[id.replace('gallery','')];
-      const q = +document.getElementById(`${id}_qty${i}`).value;
-      const name = document.getElementById(`${id}_name${i}`).value || "Sin nombre";
-      const phone = document.getElementById(`${id}_phone${i}`).value.trim();
-      const unit = calcPrice(q, rule);
-      const total = q * unit;
-
-      const msg = `🌿 Pedido OlivaZo-Py\nGalería: ${id}\nCliente: ${name}\nProducto: ${list[i].name}\nCantidad: ${q}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nContacto: ${phone}`;
-      const enc = encodeURIComponent(msg);
-      if (phone.length >= 8){
-        const dest = phone.startsWith("0") ? "595" + phone.slice(1) : phone;
-        window.open(`https://wa.me/${dest}?text=${enc}`,"_blank");
+    /* ---------------- COMPORTAMIENTO COMÚN ---------------- */
+    document.addEventListener('input', e => {
+      if (e.target.type === 'number') {
+        const card = e.target.closest('.product');
+        const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
+        const q = +e.target.value;
+        const unit = q === 1 ? prices[0] : q === 2 ? prices[1] : prices[2];
+        card.querySelector('.price').textContent = formatGs(prices[0]);
+        card.querySelector('.discount-amount').textContent = formatGs(unit);
+        card.querySelector('.price-discount').style.display = q >= 2 ? 'block' : 'none';
+        card.querySelector('.total').textContent = `Total: ${formatGs(q * unit)}`;
       }
-      window.open(`https://wa.me/595983559813?text=${encodeURIComponent("📦 Nuevo pedido:\n" + msg)}`,"_blank");
+    });
+
+    function sendOrder(btn) {
+      const card = btn.closest('.product');
+      const name = card.querySelector('h3').textContent;
+      const qty = +card.querySelector('input[type=number]').value;
+      const clientName = card.querySelectorAll('input[type=text]')[0].value || "Sin nombre";
+      const phone = card.querySelectorAll('input[type=text]')[1].value.trim();
+      const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
+      const unit = qty === 1 ? prices[0] : qty === 2 ? prices[1] : prices[2];
+      const total = qty * unit;
+
+      const msg = `🌿 Pedido OlivaZo-Py\nProducto: ${name}\nCantidad: ${qty}\nPrecio c/u: ${formatGs(unit)}\nTotal: ${formatGs(total)}\nCliente: ${clientName}\nContacto: ${phone}`;
+      window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    renderAceites(aceites);
-    render(gym, 'galleryGym', defaultRules);
-    render(snacks, 'gallerySnacks', defaultRules);
-    render(cosmeticos, 'galleryCosmetica', defaultRules);
+    /* ---------------- INICIALIZAR ---------------- */
+    renderAceites();
+    render(snacks, 'gallerySnacks', [55000,50000,45000]);
+    render(cosmeticos, 'galleryCosmetica', [55000,50000,45000]);
   </script>
 
   <footer style="text-align:center;padding:20px;font-size:14px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);margin-top:40px">
