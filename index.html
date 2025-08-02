@@ -122,7 +122,7 @@
     const formatGs = n => "Gs. " + n.toLocaleString();
 
     /* ---------------- ACEITES ---------------- */
-    const aceitePrices = [[100000,90000,80000],[120000,110000,100000],[115000,110000,100000]];
+    const aceitePrices = [[100000,90000,80000],[120000,110000,110000],[115000,110000,100000]];
     const aceites = [
       {name:"Aceite Virgen Extra – Olive Oil", desc:"Garrafa 2 Litros - Calidad Premium", image:"img_aceite/Negrolin.jpeg"},
       {name:"Aceite Virgen Extra – Dell Olivo", desc:"Garrafa 2 Litros - Premium Intenso", image:"img_aceite/italiano.jpeg"},
@@ -197,30 +197,26 @@
         card.querySelector('.total').textContent = `Total: ${formatGs(q * unit)}`;
       }
     });
-    
-function sendOrder(btn) {
-  // Evita el bloqueo del navegador
-  btn.disabled = true;          // Evita doble clic
-  setTimeout(() => btn.disabled = false, 1000);
 
-  // Recolección de datos
-  const card       = btn.closest('.product');
-  const name       = card.querySelector('h3').textContent;
-  const qty        = +card.querySelector('input[type=number]').value;
-  const clientName = card.querySelectorAll('input[type=text]')[0].value || "Sin nombre";
-  const phone      = card.querySelectorAll('input[type=text]')[1].value.trim();
+    function sendOrder(btn) {
+      btn.disabled = true;
+      setTimeout(() => btn.disabled = false, 1000);
 
-  const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
-  const unit   = qty === 1 ? prices[0] : qty === 2 ? prices[1] : prices[2];
-  const total  = qty * unit;
+      const card       = btn.closest('.product');
+      const name       = card.querySelector('h3').textContent;
+      const qty        = +card.querySelector('input[type=number]').value;
+      const clientName = card.querySelectorAll('input[type=text]')[0].value || "Sin nombre";
+      const phone      = card.querySelectorAll('input[type=text]')[1].value.trim();
 
-  const msg = `🌿 Pedido OlivaZo-Py\nProducto: ${name}\nCantidad: ${qty}\nPrecio c/u: Gs. ${unit.toLocaleString()}\nTotal: Gs. ${total.toLocaleString()}\nCliente: ${clientName}\nContacto: ${phone}`;
+      const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
+      const unit   = qty === 1 ? prices[0] : qty === 2 ? prices[1] : prices[2];
+      const total  = qty * unit;
 
-  // Redirige a WhatsApp
-  location.href = `https://wa.me/595983559813?text=${encodeURIComponent(msg)}`;
- // Confirmación instantánea ANTES de irse
-  alert("✅ Pedido enviado\nEn breve nos pondremos en contacto por WhatsApp.");
-}
+      const msg = `🌿 Pedido OlivaZo-Py\nProducto: ${name}\nCantidad: ${qty}\nPrecio c/u: Gs. ${unit.toLocaleString()}\nTotal: Gs. ${total.toLocaleString()}\nCliente: ${clientName}\nContacto: ${phone}`;
+
+      location.href = `https://wa.me/595983559813?text=${encodeURIComponent(msg)}`;
+      alert("✅ Pedido enviado\nEn breve nos pondremos en contacto por WhatsApp.");
+    }
 
     /* ---------------- INICIALIZAR ---------------- */
     renderAceites();
