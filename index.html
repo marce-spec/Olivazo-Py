@@ -218,6 +218,14 @@ function sendOrder(btn) {
 
   // Redirigir en la misma pestaña
   location.href = `https://wa.me/595983559813?text=${encodeURIComponent(msg)}`;
+function sendOrder(btn) {
+  /* ...todo lo anterior... */
+
+  // Redirige a WhatsApp
+  location.href = `https://wa.me/595983559813?text=${encodeURIComponent(msg)}`;
+
+  // Confirmación instantánea ANTES de irse
+  alert("✅ Pedido enviado\nEn breve nos pondremos en contacto por WhatsApp.");
 }
 
     /* ---------------- INICIALIZAR ---------------- */
