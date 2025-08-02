@@ -199,24 +199,21 @@
       }
     });
 
-/* ------- FUNCIÓN ACTUALIZADA ------- */
+/* ------- FUNCIÓN FINAL ------- */
 function sendOrder(btn) {
   const card = btn.closest('.product');
   const name = card.querySelector('h3').textContent;
-  const qty  = +card.querySelector('input[type=number]').value;
+  const qty = +card.querySelector('input[type=number]').value;
   const clientName = card.querySelectorAll('input[type=text]')[0].value || "Sin nombre";
   const phone = card.querySelectorAll('input[type=text]')[1].value.trim();
 
   const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
-  const unit  = qty === 1 ? prices[0] : qty === 2 ? prices[1] : prices[2];
+  const unit = qty === 1 ? prices[0] : qty === 2 ? prices[1] : prices[2];
   const total = qty * unit;
 
   const msg = `🌿 Pedido OlivaZo-Py\nProducto: ${name}\nCantidad: ${qty}\nPrecio c/u: Gs. ${unit.toLocaleString()}\nTotal: Gs. ${total.toLocaleString()}\nCliente: ${clientName}\nContacto: ${phone}`;
 
-  /* 1. Abrir chat con el cliente (595983559813) */
-  window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msg)}`, '_blank');
-
-  /* 2. Abrir tu chat para gestión (TU_NUMERO) */
+  // Solo a tu WhatsApp
   window.open(`https://wa.me/595983559813?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
