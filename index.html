@@ -185,18 +185,24 @@
     }
 
     /* ---------------- COMPORTAMIENTO COMÚN ---------------- */
-    document.addEventListener('input', e => {
-      if (e.target.type === 'number') {
-        const card = e.target.closest('.product');
-        const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
-        const q = +e.target.value;
-        const unit = q === 1 ? prices[0] : q === 2 ? prices[1] : prices[2];
-        card.querySelector('.price').textContent = formatGs(prices[0]);
-        card.querySelector('.discount-amount').textContent = formatGs(unit);
-        card.querySelector('.price-discount').style.display = q >= 2 ? 'block' : 'none';
-        card.querySelector('.total').textContent = `Total: ${formatGs(q * unit)}`;
-      }
-    });
+document.addEventListener('input', e => {
+  if (e.target.type === 'number') {
+    const card = e.target.closest('.product');
+    const prices = card.dataset.prices ? card.dataset.prices.split(',').map(Number) : [55000,50000,45000];
+    const q = +e.target.value;
+    const unit = q === 1 ? prices[0] : q === 2 ? prices[1] : prices[2];
+
+    // Precio fijo siempre visible
+    card.querySelector('.price').textContent = formatGs(prices[0]);
+    
+    // Texto "(con descuento)" solo desde 2 unidades
+    const discLabel = card.querySelector('.price-discount');
+    discLabel.style.display = q >= 2 ? 'inline' : 'none';
+    discLabel.textContent = '(con descuento)';
+
+    card.querySelector('.total').textContent = `Total: ${formatGs(q * unit)}`;
+  }
+});
 
     function sendOrder(btn) {
       btn.disabled = true;
