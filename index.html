@@ -96,7 +96,16 @@
           <img src="${p.image}" alt="${p.name}">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
-          <p class="unit-price"><strong>Precio:</strong> <span class="price">${formatGs(aceitePrices[i][0])}</span> c/u</p>
+          <!-- Sustituir el bloque dentro de renderAceites -->
+<p class="unit-price">
+  <strong>Precio:</strong>
+  <span class="price">${formatGs(qty === 1 ? aceitePrices[i][0] : qty === 2 ? aceitePrices[i][1] : aceitePrices[i][2])}</span>
+  <span class="discount" style="color:#8aff8a;">
+    ${qty >= 2 ? 'con descuento' : ''}
+  </span>
+  c/u
+</p>
+
           <p class="discount price-discount" style="display:none">Con descuento</p>
           <label>Cantidad: <input type="number" value="1" min="1" max="3"></label>
           <p class="total"></p>
